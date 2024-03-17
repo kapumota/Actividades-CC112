@@ -1219,6 +1219,105 @@ Aunque los enfoques "top-down" y "bottom-up" tienen sus representaciones natural
 
     Recursión de Cola y bottom-up: La recursión de cola es un ejemplo interesante donde un diseño recursivo se aproxima en comportamiento y eficiencia a un enfoque iterativo, especialmente cuando el compilador aplica optimizaciones de recursión de cola.
 
+
+
+Técnicas de optimización
+~~~~~~~~~~~~
+
+La memoización es una forma de mejorar la recursividad. Es una técnica que consiste en almacenar en memoria valores que ya hemos calculado para evitar calcularlos de nuevo, mejorando así el tiempo de ejecución del
+algoritmo. Hagamos un ejemplo para ver la importancia de usar la
+memorización.
+
+Considera la función de recurrencia siguiente, que calcula el n-ésimo
+número de Fibonacci. Los primeros dos números de Fibonacci son 1, y el
+n-ésimo número de Fibonacci es la suma de los dos números de Fibonacci
+anteriores, para :math:`n \geq 2`.
+
+.. code:: c++
+
+    int f(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        
+        return f(n - 1) + f(n - 2);
+    }
+
+
+Ahora, supongamos que queremos obtener el quinto número de Fibonacci.
+
+Si usamos un arreglo para almacenar los valores de todos los números de Fibonacci ya calculados y usamos esos valores entonces evitaremos ejecutar las mismas operaciones nuevamente y eso mejorará el tiempo de ejecución de nuestro código.
+
+Considera el arreglo ``Fibo`` contiene que inicialmente contiene solo 0 y se usará para almacenar los números de Fibonacci. La función de recursión que usa memoización se vería de la siguiente manera:
+
+.. code:: c++
+
+    int f(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+    }
+    if (Fibo[n] == 0) {
+        Fibo[n] = f(n - 1) + f(n - 2);
+    }
+        return Fibo[n];
+    
+    }
+
+En el código mostrado anteriormente notamos que solo llamamos a la función recursiva si el valor de ``Fibo[n]`` es cero, lo que significa que aún no hemos calculado el n-ésimo número de Fibonacci. De lo contrario, devolvemos el valor ya calculado almacenado en ``Fibo[n]``.
+
+La **memorización** es un proceso de optimización. En términos simples, almacenamos los resultados intermedios de las soluciones de subproblemas, lo que nos permite acelerar el cálculo de la solución general.
+
+La mejora se puede reducir de una solución de tiempo exponencial a una solución de tiempo polinómico, con la sobrecarga de utilizar memoria adicional para almacenar resultados intermedios.
+
+Esta técnica es especialmente útil para la serie de Fibonacci, donde hay una gran cantidad de cálculos redundantes en la versión recursiva básica.
+
+.. code:: c++
+
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+
+    int fibonacciMemoAux(int n, vector<int>& memo) {
+        if (n <= 1) return n;
+        if (memo[n] != -1) return memo[n]; // Retorna el valor memoizado si ya está calculado
+        memo[n] = fibonacciMemoAux(n - 1, memo) + fibonacciMemoAux(n - 2, memo); // Calcula y memoiza
+        return memo[n];
+    }
+
+    int fibonacciMemo(int n) {
+        vector<int> memo(n+1, -1); // Inicializa el vector de memoización con -1
+        return fibonacciMemoAux(n, memo);
+    }
+
+    int main() {
+        int n = 10;
+        cout << "Fibonacci de " << n << " es " << fibonacciMemo(n) << endl;
+        return 0;
+    }
+
+La recursión de cola es otra técnica de optimización que minimiza el uso de la pila de llamadas al asegurarse de que la llamada recursiva sea la última operación en la función. Para aplicar la recursión de cola en la serie de Fibonacci, necesitamos cambiar la estructura de la función para pasar los valores intermedios como argumentos en cada llamada recursiva.
+
+.. code:: C++
+    #include <iostream>
+    using namespace std;
+
+    int fibonacciTailAux(int n, int a, int b) {
+        if (n == 0) return a;
+        if (n == 1) return b;
+        return fibonacciTailAux(n - 1, b, a + b); // Llamada de cola
+    }
+
+    int fibonacciTail(int n) {
+        return fibonacciTailAux(n, 0, 1);
+    }
+
+    int main() {
+        int n = 10;
+        cout << "Fibonacci de " << n << " es " << fibonacciTail(n) << endl;
+        return 0;
+    }
+
+
 Funciones Lambdas
 ~~~~~~~~~~
 
@@ -1232,9 +1331,12 @@ Las funciones lambda, introducidas en C++11, son una característica poderosa qu
 
 Donde:
 
-    capture: Define qué variables externas al cuerpo de la lambda son accesibles dentro de ella y cómo (por valor o por referencia). Si se captura por valor, la lambda tiene una copia de la variable; si se captura por referencia, trabaja directamente sobre la original.
+    capture: Define qué variables externas al cuerpo de la lambda son accesibles dentro de ella y cómo (por valor o por           referencia). Si se captura por valor, la lambda tiene una copia de la variable; si se captura por referencia, trabaja        directamente sobre la original.
+
     parameters: Lista de parámetros para la función, similar a los parámetros de una función normal.
-    return_type: Tipo de retorno de la función. Es opcional y puede ser inferido automáticamente por el compilador en muchos casos.
+    
+    return_type: Tipo de retorno de la función. Es opcional y puede ser inferido automáticamente por el compilador en muchos     casos.
+    
     body: Cuerpo de la función, donde se implementa la lógica de la lambda
 
 Ejemplo
