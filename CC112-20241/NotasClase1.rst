@@ -1189,3 +1189,33 @@ Entonces podemos eliminar la función iterativa por completo.
         int sumaTodosMenosUno = sumaRecursivaArray(enteros, tam - 1);
         return ultimoNumero + sumaTodosMenosUno;
     }
+
+Los enfoques top-down y bottom-up
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Los enfoques de diseño de algoritmos "top-down" y "bottom-up" tienen una relación interesante y complementaria con las funciones iterativas y recursivas en la programación. Aunque no existe una correspondencia uno a uno entre estos conceptos, sus interacciones ofrecen perspectivas útiles sobre cómo se pueden estructurar y resolver los problemas computacionales.
+
+
+El enfoque "top-down" se basa en comenzar con el problema principal y descomponerlo en subproblemas más pequeños hasta llegar a casos simples que se pueden resolver directamente. Este método es naturalmente afín a la recursión:
+
+    Recursión: Las funciones recursivas implementan un enfoque "top-down" al dividir automáticamente un problema en versiones más pequeñas de sí mismo. Cada llamada recursiva aborda un subconjunto del problema original hasta llegar a un caso base simple. La solución al problema general se construye entonces a partir de las soluciones a estos subproblemas.
+
+Ejemplo: Ordenamiento Merge Sort
+
+Merge Sort es un claro ejemplo de un algoritmo que sigue un enfoque "top-down". Primero, divide el arreglo en dos mitades, luego ordena cada mitad recursivamente, y finalmente fusiona las dos mitades ordenadas. Aquí, la descomposición del problema y la recursión trabajan de la mano.
+
+
+Por otro lado, el enfoque "bottom-up" comienza con los casos más simples o componentes básicos y los combina gradualmente para construir la solución a problemas más grandes o al problema general. Este método se alinea bien con las funciones iterativas:
+
+    Funciones Iterativas: Típicamente implementan un enfoque "bottom-up", especialmente evidente en algoritmos dinámicos y en la iteración sobre estructuras de datos. Aquí, se comienza con un conocimiento base o casos simples y se itera para construir soluciones más complejas, agregando y combinando resultados paso a paso.
+
+Ejemplo: Programación dinámica - Fibonacci
+
+En la programación dinámica para calcular números de Fibonacci, se comienza calculando `fib(0)` y `fib(1)` y luego se iteran hacia arriba hasta el n deseado, utilizando los resultados anteriores para construir los siguientes. Esto es un claro enfoque "bottom-up", donde se acumulan los resultados desde el caso base.
+
+
+Aunque los enfoques "top-down" y "bottom-up" tienen sus representaciones naturales en la recursión y la iteración, respectivamente, el uso de uno sobre el otro no es exclusivo. Algunos problemas pueden abordarse efectivamente desde ambos enfoques, y la elección entre iteración y recursión puede depender de factores como la claridad del código, la eficiencia y las limitaciones del lenguaje de programación.
+
+    Optimización de recursión a iteración: En muchos casos, un diseño recursivo "top-down" puede ser reescrito como un algoritmo iterativo "bottom-up" para mejorar la eficiencia, especialmente para evitar el exceso de llamadas recursivas y el uso excesivo de la pila.
+
+    Recursión de Cola y Bottom-Up: La recursión de cola es un ejemplo interesante donde un diseño recursivo se aproxima en comportamiento y eficiencia a un enfoque iterativo, especialmente cuando el compilador aplica optimizaciones de recursión de cola.
+
