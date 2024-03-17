@@ -1228,10 +1228,7 @@ La memoización es una forma de mejorar la recursividad. Es una técnica que con
 algoritmo. Hagamos un ejemplo para ver la importancia de usar la
 memorización.
 
-Considera la función de recurrencia siguiente, que calcula el n-ésimo
-número de Fibonacci. Los primeros dos números de Fibonacci son 1, y el
-n-ésimo número de Fibonacci es la suma de los dos números de Fibonacci
-anteriores, para :math:`n \geq 2`.
+Considera la función de recurrencia siguiente, que calcula el n-ésimo número de Fibonacci. Los primeros dos números de Fibonacci son 1, y el n-ésimo número de Fibonacci es la suma de los dos números de Fibonacci anteriores, para :math:`n \geq 2`.
 
 .. code:: c++
 
@@ -1364,3 +1361,16 @@ Ejemplo
     }
 
 Este ejemplo demuestra cómo una lambda puede capturar variables externas (`memo`) y otra lambda (`fibonacci`) por referencia, lo que permite la recursividad y la memoización. La clave aquí es que la lambda `fibonacci se captura por referencia en su propio cuerpo, permitiéndole llamarse a sí misma de manera recursiva.
+
+Ejercicios
+----------
+
+Como siempre, ¡es imperativo probar las ideas presentadas en esta clase!.
+
+1. Escribe una función para calcular la suma de solo los números positivos en un arreglo de enteros. Primero, resuelve el problema usando iteración. Luego, utilizando alguna técnica de esta clase, convierte tu función iterativa en una función recursiva.
+
+2. Considera un arreglo que representa una cadena binaria, donde el valor de datos de cada elemento es 0 o 1. Escribe una función booleana para determinar si la cadena binaria tiene paridad impar (un número impar de 1 bits). Sugerencia: recuerda que la función recursiva devolverá true (odd) o false (even), no el recuento de 1 bits. Resuelve el problema primero usando iteración, luego recursividad.
+
+3. Escribe una función a la que se le pase un arreglo de enteros y un número "objetivo" y que devuelva el número de ocurrencias del objetivo en el arreglo. Resuelve el problema primero usando iteración, luego recursividad.
+
+4. Encuentra un problema sobre procesar un arreglo unidimensional que ya hayas resuelto o que sea trivial para ti en tu nivel de habilidad actual y resuelve el problema (o resuelvas de nuevo) usando recursividad.
