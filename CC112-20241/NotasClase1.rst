@@ -1073,7 +1073,7 @@ En la recursión lineal o simple, cada llamada a la función realiza a lo sumo u
     int factorial(int n) {
     if (n <= 1) return 1;
     else return n * factorial(n - 1);
-}
+    }
 
 **Recursión de Cola (tail recursion)**
 
@@ -1083,8 +1083,8 @@ Un subtipo especial de recursión lineal es la recursión de cola, donde la llam
 
     int factorialDeCola(int n, int acumulador = 1) {
     if (n <= 1) return acumulador;
-    else return factorialDeCola(n - 1, n * acumulador);
-}
+        else return factorialDeCola(n - 1, n * acumulador);
+    }
 
 **Recursión múltiple**
 
@@ -1095,7 +1095,7 @@ La recursión múltiple ocurre cuando una función se llama a sí misma más de 
     int fibonacci(int n) {
         if (n <= 1) return n;
         else return fibonacci(n - 1) + fibonacci(n - 2);
-    }
+        }
 
 **Recursión anidada**
 
@@ -1105,8 +1105,9 @@ En la recursión anidada, una llamada recursiva ocurre como parte de la argument
 
     int funcionAnidada(int n) {
     if (n <= 10) return n;
-    return funcionAnidada(funcionAnidada(n / 2));
-}
+        return funcionAnidada(funcionAnidada(n / 2));
+    }
+
 **Recursión mutua o indirecta**
 
 Ocurre cuando dos o más funciones se llaman entre sí de manera recursiva. Esto significa que hay un ciclo de llamadas entre distintas funciones antes de llegar al caso base. La recursión mutua puede ser útil para resolver problemas que naturalmente se dividen en tareas que requieren alternar entre diferentes operaciones.
@@ -1114,18 +1115,18 @@ Ocurre cuando dos o más funciones se llaman entre sí de manera recursiva. Esto
 .. code:: c++
 
     void funcionA(int n);
-void funcionB(int n);
+    void funcionB(int n);
 
-void funcionA(int n) {
+    void funcionA(int n) {
     if (n > 0) {
         cout << "A " << n << endl;
         funcionB(n - 1);
+        }
     }
-}
 
 void funcionB(int n) {
     if (n > 0) {
         cout << "B " << n << endl;
         funcionA(n / 2);
+        }
     }
-}
