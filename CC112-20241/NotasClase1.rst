@@ -1059,3 +1059,73 @@ tener:
 
 2. Se debe dar una condición de parada o caso base para evitar un
    proceso infinito.
+
+Tipos de recursión
+~~~~~~~~~~~~~~~~~~~~~~
+En la programación, la recursión puede clasificarse principalmente en dos tipos, según cómo se manejan las llamadas recursivas y cómo se acumulan los resultados. Estos dos tipos son:
+
+**Recursión Lineal o Simple**
+
+En la recursión lineal o simple, cada llamada a la función realiza a lo sumo una llamada recursiva adicional. Este tipo de recursión es relativamente fácil de seguir, ya que el flujo del programa se bifurca en un camino lineal; es decir, cada llamada espera a que la siguiente llamada recursiva termine antes de continuar. Un ejemplo clásico de recursión lineal es el cálculo del factorial de un número, donde cada función llama a sí misma con un argumento decrecido en uno hasta que se alcanza el caso base.
+
+.. code:: c++ 
+
+    int factorial(int n) {
+    if (n <= 1) return 1;
+    else return n * factorial(n - 1);
+}
+
+**Recursión de Cola (tail recursion)**
+
+Un subtipo especial de recursión lineal es la recursión de cola, donde la llamada recursiva es la última operación que realiza la función antes de devolver su valor. En la recursión de cola, no hay necesidad de mantener información sobre las llamadas anteriores en la pila de llamadas si el compilador o el intérprete optimizan el código para reutilizar el marco de pila de la función actual. Esto significa que la recursión de cola puede ser tan eficiente como un bucle iterativo en términos de uso de memoria.
+
+.. code:: c++
+
+    int factorialDeCola(int n, int acumulador = 1) {
+    if (n <= 1) return acumulador;
+    else return factorialDeCola(n - 1, n * acumulador);
+}
+
+**Recursión múltiple**
+
+La recursión múltiple ocurre cuando una función se llama a sí misma más de una vez dentro de su cuerpo. La serie de Fibonacci es un ejemplo clásico, donde para calcular un término, se necesitan los dos términos precedentes, lo que resulta en dos llamadas recursivas. Este tipo de recursión puede ser más difícil de analizar y optimizar, ya que el árbol de llamadas crece exponencialmente con cada nivel de profundidad.
+
+.. code:: c++
+
+    int fibonacci(int n) {
+        if (n <= 1) return n;
+        else return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+**Recursión anidada**
+
+En la recursión anidada, una llamada recursiva ocurre como parte de la argumentación a otra llamada de la misma función o de una diferente. Este tipo de recursión puede llevar a una complejidad aún mayor en el árbol de llamadas, ya que cada llamada puede generar múltiples llamadas adicionales antes de completarse.
+
+.. code:: c++
+
+    int funcionAnidada(int n) {
+    if (n <= 10) return n;
+    return funcionAnidada(funcionAnidada(n / 2));
+}
+**Recursión mutua o indirecta**
+
+Ocurre cuando dos o más funciones se llaman entre sí de manera recursiva. Esto significa que hay un ciclo de llamadas entre distintas funciones antes de llegar al caso base. La recursión mutua puede ser útil para resolver problemas que naturalmente se dividen en tareas que requieren alternar entre diferentes operaciones.
+
+.. code:: c++
+
+    void funcionA(int n);
+void funcionB(int n);
+
+void funcionA(int n) {
+    if (n > 0) {
+        cout << "A " << n << endl;
+        funcionB(n - 1);
+    }
+}
+
+void funcionB(int n) {
+    if (n > 0) {
+        cout << "B " << n << endl;
+        funcionA(n / 2);
+    }
+}
