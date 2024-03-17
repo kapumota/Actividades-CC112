@@ -944,6 +944,67 @@ Referencias
    Education, Inc.
 -  C++ crash course : a fast-paced introduction / Josh Lospinoso. First
    edition. San Francisco, CA : No Starch Press, Inc.2019
+Concursos de Programación
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Una olimpiada de Informática consiste en resolver diferentes problemas
+utilizando lógica y computadoras. Cada país organiza preliminares y un
+concurso nacional, luego seleccionan a cuatro estudiantes para
+participar en la Olimpiada Internacional de Informática que se realiza
+cada año. El siguiente
+`enlace <http://www.ioinformatics.org/history.shtml>`__ contiene los
+resultados, problemas y soluciones de todos los concursos que se han
+realizado desde 1989.
 
+Para los estudiantes universitarios existe el
+`ACM-ICPC <https://icpc.global/>`__. Aquí, cada equipo consta de tres
+estudiantes y un entrenador.
+
+Jueces en línea
+^^^^^^^^^^^^^^^
+
+Los jueces en línea son sitios web donde puedes encontrar problemas de
+diferentes categorías y enviar su solución, que luego se evalúan
+comparándolo con las entradas y salidas de las pruebas y dar un
+resultado.
+
+Algunos de los jueces en línea más populares son:
+
+-  `Leetcode <https://leetcode.com/>`__. Uno de los sitios más populares
+   para capacitarse para entrevistas de trabajo en las principales
+   empresas tecnológicas. Contiene problemas de diferentes categorías.
+
+-  `Project Euler <https://projecteuler.net/>`__. Enfocado a las
+   matemáticas, no es necesario enviar un código fuente, solo la
+   respuesta al problema.
+
+-  `Codeforces <https://codeforces.com/>`__. Uno de los mejores jueces
+   en línea para practicar, contiene problemas de diferentes categorías
+   y con frecuencia programa competencias. También hay excelentes
+   tutoriales y debates sobre soluciones.
+
+-  `UVA Online Judge <https://onlinejudge.org/index.php>`__. Aquí puede
+   encontrar problemas de cualquier tipoy hay más de 4000 problemas para
+   elegir.
+
+-  `Hacker Rank <https://www.hackerrank.com/>`__. Un juez en línea para
+   comenzar a codificar, tienen un camino para que pueda comenzar con
+   problemas fáciles y luego pasar a los más complicados.
+
+-  `CodeChef <https://www.codechef.com/>`__. Esta plataforma es útil
+   para preparar a los estudiantes para competencias de programación y
+   para que los profesionales mejoren sus habilidades de codificación.
+   Tiene una gran comunidad de desarrolladores y soporta más de 50
+   lenguajes de programación.
+
+-  `Topcoder <https://www.topcoder.com/>`__. Contiene tutoriales que
+   explican con gran detalle diferentes algoritmos. Al resolver un
+   problema los puntos obtenidos al resolverlo disminuyen a medida que
+   pasa el tiempo, por lo que si deseas mejorar tu velocidad de
+   codificación, este es el lugar correcto.
+
+-  `Omega UP <https://omegaup.com/>`__. Excelente herramienta para
+   enseñar programación de computadoras. Es muy fácil crear tus propios
+   problemas y también hay una gran base de datos de problemas para
+   resolver.
 
