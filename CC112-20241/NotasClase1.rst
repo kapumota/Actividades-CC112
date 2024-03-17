@@ -1124,9 +1124,68 @@ Ocurre cuando dos o más funciones se llaman entre sí de manera recursiva. Esto
         }
     }
 
-void funcionB(int n) {
+    void funcionB(int n) {
     if (n > 0) {
         cout << "B " << n << endl;
         funcionA(n / 2);
         }
+    }
+
+Paso de soluciones iterativas a recursivas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Escribe una función recursiva a la que se le dé un arreglo de enteros y
+el tamaño del arreglo como parámetros. La función devuelve la suma de
+los enteros del arreglo.
+
+Empecemos con una solución iterativa a este problema:
+
+.. code:: c++
+
+    int sumaInterativaArray(int enteros[], int tam) {
+        int suma = 0;
+        for (int i = 0; i < tam; i++) {
+            suma += enteros[i];
+        }
+        return suma;
+    }
+
+El siguiente paso es escribir código que esté a mitad de camino entre la
+solución iterativa y la solución recursiva final deseada. Mantendremos
+la función iterativa y agregaremos una segunda función a la que nos
+referiremos como ``delegado``.
+
+El delegado entregará la mayor parte del trabajo a la función iterativa
+previamente escrita y usará esta información para resolver el problema
+general.
+
+Para escribir un delegado, tenemos que seguir dos reglas:
+
+-  El delegado debe manejar completamente el caso más trivial, sin
+   llamar a la función iterativa.
+-  El delegado, al llamar a la función iterativa, debe pasar una versión
+   más pequeña del problema.
+
+.. code:: c++
+
+    int sumaDelegadaArray(int enteros[], int tam) {
+        if (tam == 0) return 0;
+        int ultimoNumero = enteros[tam - 1];
+        int sumaTodosMenosUno = sumaIterativaArray(enteros, tam - 1);
+        return ultimoNumero + sumaTodosMenosUno;
+    }
+
+Para convertir esta solución iterativa en una solución recursiva, sólo
+se requiere un paso adicional y simple: hacer que la función delegada se
+llame a sí misma donde antes llamaba a la función iterativa.
+
+Entonces podemos eliminar la función iterativa por completo.
+
+.. code:: c++
+
+    int sumaRecursivaArray(int enteros[], int tam) {
+        if (tam == 0) return 0;
+        int ultimoNumero = enteros[tam - 1];
+        int sumaTodosMenosUno = sumaRecursivaArray(enteros, tam - 1);
+        return ultimoNumero + sumaTodosMenosUno;
     }
