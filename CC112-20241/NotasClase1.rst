@@ -1217,5 +1217,48 @@ Aunque los enfoques "top-down" y "bottom-up" tienen sus representaciones natural
 
     Optimización de recursión a iteración: En muchos casos, un diseño recursivo "top-down" puede ser reescrito como un algoritmo iterativo "bottom-up" para mejorar la eficiencia, especialmente para evitar el exceso de llamadas recursivas y el uso excesivo de la pila.
 
-    Recursión de Cola y Bottom-Up: La recursión de cola es un ejemplo interesante donde un diseño recursivo se aproxima en comportamiento y eficiencia a un enfoque iterativo, especialmente cuando el compilador aplica optimizaciones de recursión de cola.
+    Recursión de Cola y bottom-up: La recursión de cola es un ejemplo interesante donde un diseño recursivo se aproxima en comportamiento y eficiencia a un enfoque iterativo, especialmente cuando el compilador aplica optimizaciones de recursión de cola.
 
+Funciones Lambdas
+~~~~~~~~~~
+
+Las funciones lambda, introducidas en C++11, son una característica poderosa que permite definir funciones anónimas directamente dentro de expresiones:
+
+.. code:: C++
+
+    [ capture ] ( parameters ) -> return_type {
+        // cuerpo
+    }
+
+Donde:
+
+    capture: Define qué variables externas al cuerpo de la lambda son accesibles dentro de ella y cómo (por valor o por referencia). Si se captura por valor, la lambda tiene una copia de la variable; si se captura por referencia, trabaja directamente sobre la original.
+    parameters: Lista de parámetros para la función, similar a los parámetros de una función normal.
+    return_type: Tipo de retorno de la función. Es opcional y puede ser inferido automáticamente por el compilador en muchos casos.
+    body: Cuerpo de la función, donde se implementa la lógica de la lambda
+
+Ejemplo
+
+.. code:: C++
+   
+    #include <iostream>
+    #include <functional>
+    #include <unordered_map>
+    using namespace std;
+
+    int main() {
+        unordered_map<int, int> memo;
+
+        function<int(int)> fibonacci = [&memo, &fibonacci](int n) -> int {
+            if (n <= 1) return n;
+            if (memo.count(n)) return memo[n];
+            memo[n] = fibonacci(n - 1) + fibonacci(n - 2);
+            return memo[n];
+            };
+
+        int n = 10;
+        cout << "Fibonacci de " << n << " es " << fibonacci(n) << endl;
+        return 0;
+    }
+
+Este ejemplo demuestra cómo una lambda puede capturar variables externas (`memo`) y otra lambda (`fibonacci`) por referencia, lo que permite la recursividad y la memoización. La clave aquí es que la lambda `fibonacci se captura por referencia en su propio cuerpo, permitiéndole llamarse a sí misma de manera recursiva.
