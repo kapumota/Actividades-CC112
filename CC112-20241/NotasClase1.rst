@@ -945,3 +945,971 @@ Referencias
 -  C++ crash course : a fast-paced introduction / Josh Lospinoso. First
    edition. San Francisco, CA : No Starch Press, Inc.2019
 
+Fundamentos de Programación
+===========================
+
+La programación es algo que se ha convertido en parte de nuestra vida
+cotidiana a tal manera que nos resulta natural que está presente en
+nuestros teléfonos inteligentes, computadoras, televisores, automóviles,
+etc.
+
+La programación competitiva es una herramienta para los ingenieros de
+software o todo profesional de Ciencias de la Computación pues ayuda a
+mejorar las habilidades para resolver problemas relacionados con los
+algoritmos.
+
+Concursos de Programación
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Una olimpiada de Informática consiste en resolver diferentes problemas
+utilizando lógica y computadoras. Cada país organiza preliminares y un
+concurso nacional, luego seleccionan a cuatro estudiantes para
+participar en la Olimpiada Internacional de Informática que se realiza
+cada año. El siguiente
+`enlace <http://www.ioinformatics.org/history.shtml>`__ contiene los
+resultados, problemas y soluciones de todos los concursos que se han
+realizado desde 1989.
+
+Para los estudiantes universitarios existe el
+`ACM-ICPC <https://icpc.global/>`__. Aquí, cada equipo consta de tres
+estudiantes y un entrenador.
+
+Jueces en línea
+^^^^^^^^^^^^^^^
+
+Los jueces en línea son sitios web donde puedes encontrar problemas de
+diferentes categorías y enviar su solución, que luego se evalúan
+comparándolo con las entradas y salidas de las pruebas y dar un
+resultado.
+
+Algunos de los jueces en línea más populares son:
+
+-  `Leetcode <https://leetcode.com/>`__. Uno de los sitios más populares
+   para capacitarse para entrevistas de trabajo en las principales
+   empresas tecnológicas. Contiene problemas de diferentes categorías.
+
+-  `Project Euler <https://projecteuler.net/>`__. Enfocado a las
+   matemáticas, no es necesario enviar un código fuente, solo la
+   respuesta al problema.
+
+-  `Codeforces <https://codeforces.com/>`__. Uno de los mejores jueces
+   en línea para practicar, contiene problemas de diferentes categorías
+   y con frecuencia programa competencias. También hay excelentes
+   tutoriales y debates sobre soluciones.
+
+-  `UVA Online Judge <https://onlinejudge.org/index.php>`__. Aquí puede
+   encontrar problemas de cualquier tipoy hay más de 4000 problemas para
+   elegir.
+
+-  `Hacker Rank <https://www.hackerrank.com/>`__. Un juez en línea para
+   comenzar a codificar, tienen un camino para que pueda comenzar con
+   problemas fáciles y luego pasar a los más complicados.
+
+-  `CodeChef <https://www.codechef.com/>`__. Esta plataforma es útil
+   para preparar a los estudiantes para competencias de programación y
+   para que los profesionales mejoren sus habilidades de codificación.
+   Tiene una gran comunidad de desarrolladores y soporta más de 50
+   lenguajes de programación.
+
+-  `Topcoder <https://www.topcoder.com/>`__. Contiene tutoriales que
+   explican con gran detalle diferentes algoritmos. Al resolver un
+   problema los puntos obtenidos al resolverlo disminuyen a medida que
+   pasa el tiempo, por lo que si deseas mejorar tu velocidad de
+   codificación, este es el lugar correcto.
+
+-  `Omega UP <https://omegaup.com/>`__. Excelente herramienta para
+   enseñar programación de computadoras. Es muy fácil crear tus propios
+   problemas y también hay una gran base de datos de problemas para
+   resolver.
+
+C y C++
+~~~~~~~
+
+C++ es un lenguaje rápido que otros lenguajes como Java o Python
+utilizado en las competencias de programación donde podemos implementar
+estructuras de datos más complejas, manipular cadenas, usar algoritmos
+predefinidos, etc.
+
+Hay algunas ocasiones usamos funciones C para leer los datos de entrada
+y escribir los datos de salida. C++ tiene a ``cin`` y ``cout`` para
+manejar la entrada y salida respectivamente, pero son lentos en
+comparación con las funciones de C ``scanf`` y ``printf``.
+
+Aun así, las funciones de C++ se pueden optimizar agregando las
+siguientes líneas al comienzo de la función ``main``
+
+::
+
+   cin.tie(0);  
+   ios_base::sync_with_stdio(0); 
+
+Revisar:`Significance of ios_base::sync_with_stdio(false);
+cin.tie(NULL); <https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull>`__.
+
+Utilizaremos C++ en todo este curso
+
+Recursividad
+------------
+
+``Primero, resuelve el problema. Luego, escribe el código`` –>
+``John Johnson``
+
+La recursividad es una herramienta muy poderosa y muchos de los
+algoritmos contenidos en este la usan. Es por eso que decidimos agregar
+una breve descripción del mismo.
+
+Cuando se llama a una función dentro de la misma función, decimos que
+esta función es una función recursiva. Supongamos que hay una función
+:math:`f(n)`, que devuelve el factorial de un número dado n. Lo sabemos:
+
+::
+
+   f(0) = 1
+   f(1) = 1
+   f(2) = 1 x 2   
+   f(3) = 1 x 2 x 3 = f(2) x f(3)
+   ...
+   f(n) = 1 x 2 x 3...f(n) = f(n-1) x n  
+
+
+Vemos que el factorial de n se obtiene multiplicando n por el factorial
+de n - 1, y el factorial de n - 1 se obtiene por el factorial de n -2, y
+así hasta llegar a 0!. Entonces decimos que 0! es el **caso base**, ya
+que es el que genera el resto de los factoriales. Si vemos esto como una
+función recursiva, se vería como:
+
+.. code:: c++
+
+    int f(unsigned int n) {
+        if (n == 0) {
+            return 1;
+      }
+        return n * f(n - 1);
+    }
+
+La validación para verificar si n es cero es crítica, porque sin ella la
+recursividad nunca se detendría y la memoria de nuestra computadora
+eventualmente colapsaría. Cada vez que se llama recursivamente a una
+función, toda la memoria que usa se almacena en un **heap**, y esa
+memoria se libera hasta que finaliza la función. Por eso es
+indispensable agregar una condición de parada y evitar terminar en un
+proceso *infinito*.
+
+Resumiendo, hay dos partes fundamentales que toda función recursiva debe
+tener:
+
+1. La función debe llamarse a sí misma dentro de la función.
+
+2. Se debe dar una condición de parada o caso base para evitar un
+   proceso infinito.
+
+Dos tipos de recursión
+~~~~~~~~~~~~~~~~~~~~~~
+
+**PROBLEMA: ¿Cuantos loritos tenemos?**
+
+Los pasajeros del Ferrocarril Tropical Paradise (TPR) esperan ver
+docenas de coloridos loritos desde las ventanas del tren. Debido a esto,
+el ferrocarril se interesa mucho en la salud de la población local de
+loritos y decide hacer un recuento de la cantidad de loritos a la vista
+de cada andén a lo largo de la línea principal. Cada plataforma cuenta
+con un empleado de TPR (consulta la figura ), que es capaz de
+contar loritos. Desafortunadamente, el trabajo se complica por el
+primitivo sistema telefónico. Cada plataforma puede llamar sólo a sus
+vecinos inmediatos. ¿Cómo obtenemos el total de loritos en la terminal
+de la línea principal?
+
+.. image:: Imagenes/Semana1/Recursividad1.png
+
+Los empleados de las cinco estaciones solo pueden comunicarse con sus
+vecinos inmediatos.
+
+Supongamos que hay 7 loritos de Art en la terminal principal, 5 loritos
+con Belinda, 3 loritos con Cory, 10 loritos con Debbie y 2 loritos con Evan
+en la última estación. El número total de loritos es entonces 27.
+
+La pregunta es, ¿cómo van a trabajar juntos los empleados para comunicar
+este total a Art?
+
+Cualquier solución a este problema requerirá una cadena de
+comunicaciones desde la terminal principal hasta el final de la línea y
+viceversa. Se le pedirá al miembro del personal en cada plataforma que
+cuente los loritos y luego informe sus observaciones.
+
+Aun así, hay dos enfoques distintos para esta cadena de comunicaciones,
+y esos enfoques corresponden a las técnicas de recursión dados en esta
+clase.
+
+**Enfoque 1**
+
+En este enfoque, mantenemos un total acumulado de los loritos a medida
+que avanzamos en las comunicaciones salientes entre estaciones. Cada empleado, al hacer
+la solicitud del siguiente empleado en la línea, pasa la cantidad de
+loritos vistos hasta el momento. Cuando se llega al final, Evan será el primero 
+en descubrir el total de loritos, que pasará a Debbie, quien se lo pasará a Cory
+y así sucesivamente (como se muestra en la figura).
+
+.. image:: Imagenes/Semana1/Recursividad2.png
+
+Numeración de los pasos tomados en el Enfoque 1 para el problema de
+contar loritos.
+
+1.  ART comienza contando los loritos alrededor de su plataforma. Cuenta
+    7 loritos.
+2.  ART a BELINDA: “Hay 7 loritos aquí en la terminal principal”.
+3.  BELINDA cuenta 5 loritos alrededor de su plataforma para un total
+    acumulado de 12.
+4.  BELINDA a CORY: “Hay 12 loritos alrededor de las dos primeras
+    estaciones”.
+5.  CORY cuenta 3 loritos.
+6.  CORY a DEBBIE: “Hay 15 loritos alrededor de las tres primeras
+    estaciones”.
+7.  DEBBIE cuenta 10 loritos.
+8.  DEBBIE a EVAN: “Hay 25 loritos alrededor de las primeras cuatro
+    estaciones”.
+9.  EVAN cuenta 2 loritos y descubre que el número total de loritos es
+    27.
+10. EVAN a DEBBIE: “El número total de loritos es 27”.
+11. DEBBIE a CORY: “El número total de loritos es 27”.
+12. CORY a BELINDA: “El número total de loritos es 27.”
+13. BELINDA a ART: “El número total de loritos es 27”.
+
+Este enfoque es análogo a la **recursión de cola**. En la recursividad
+de cola, la llamada recursiva ocurre después del procesamiento; **la
+llamada recursiva es el último paso en la función**.
+
+En la cadena de comunicaciones anterior, ten en cuenta que el “trabajo”
+de los empleados, el conteo y la suma de loritos, ocurre antes de que
+señalen al siguiente empleado en la línea.
+
+Todo el trabajo ocurre en la cadena de comunicaciones salientes, no en
+la cadena entrante. Estos son los pasos que sigue cada empleado:
+
+1. Contar los loritos visibles desde la plataforma de la estación.
+2. Agrega este conteo al total dado por la estación anterior.
+3. Llama a la siguiente estación para pasar la suma acumulada de conteos
+   de loritos.
+4. Espera a que la siguiente estación llame con el conteo total de
+   loritos y luego pase este total a la estación anterior.
+
+**Enfoque 2**
+
+En este enfoque, sumamos los recuentos de loritos desde el otro extremo.
+Cada empleado, al comunicarse con la siguiente estación en la línea,
+solicita el número total de loritos desde esa estación en adelante.
+Luego, el empleado suma la cantidad de loritos en su propia estación y
+pasa este nuevo total por la línea (como se muestra en la figura ).
+
+.. image:: Imagenes/Semana1/Recursividad3.png
+
+Numeración de los pasos tomados en el Enfoque 2 para el problema de
+contar loritos.
+
+1.  ART a BELINDA: “¿Cuál es el número total de loritos desde tu
+    estación hasta el final de la línea?”
+2.  BELINDA a CORY: “¿Cuál es el número total de loritos desde tu
+    estación hasta el final de la línea?”
+3.  CORY a DEBBIE: “¿Cuál es el número total de loritos desde tu
+    estación hasta el final de la línea?”
+4.  DEBBIE a EVAN: “¿Cuál es el número total de loritos desde tu
+    estación hasta el final de la línea?”
+5.  EVAN es el final de la línea. Cuenta 2 loritos.
+6.  EVAN a DEBBIE: “El número total de loritos aquí al final es 2”.
+7.  DEBBIE cuenta 10 loritos en su estación, por lo que el total desde
+    su estación hasta el final es 12.
+8.  DEBBIE a CORY: “El número total de loritos desde aquí hasta el final
+    es 12”.
+9.  CORY cuenta 3 loritos.
+10. CORY a BELINDA: “El número total de loritos desde aquí hasta el
+    final es 15.”
+11. BELINDA cuenta 5 loritos.
+12. BELINDA a ART: “El total de loritos de aquí al final es 20”.
+13. ART cuenta 7 loritos en la terminal principal, haciendo un total de
+    27.
+
+Este enfoque es análogo a la **recursividad de cabecera**. En la
+**recursividad de cabecera**, la llamada recursiva ocurre antes que el
+otro procesamiento**.
+
+Aquí, la llamada a la siguiente estación ocurre primero, antes de contar
+los loritos o la sumatoria. El trabajo se pospone hasta después de que
+las estaciones de la línea hayan informado sus totales. Estos son los
+pasos que sigue cada empleado:
+
+1. Llama a la siguiente estación.
+2. Cuenta los loritos visibles desde el andén de la estación.
+3. Agrega este conteo al total dado por la siguiente estación.
+4. Pasa la suma resultante a la estación anterior.
+
+**Pregunta** ¿cuales son los efectos prácticos para los diferentes
+enfoques?
+
+.. code:: c++
+
+    // Tus respuestas
+
+
+**Referencia**:A Think like a Think Programmer: An Introduction to Creative Problem Solving, V. Anton Spraul No Starch Press, Inc. 2012.
+
+Paso de soluciones iterativas a recursivas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Escribe una función recursiva a la que se le dé un arreglo de enteros y
+el tamaño del arreglo como parámetros. La función devuelve la suma de
+los enteros del arreglo.
+
+Empecemos con una solución iterativa a este problema:
+
+.. code:: c++
+
+    int sumaInterativaArray(int enteros[], int tam) {
+        int suma = 0;
+        for (int i = 0; i < tam; i++) {
+            suma += enteros[i];
+        }
+        return suma;
+    }
+
+El siguiente paso es escribir código que esté a mitad de camino entre la
+solución iterativa y la solución recursiva final deseada. Mantendremos
+la función iterativa y agregaremos una segunda función a la que nos
+referiremos como ``delegado``.
+
+El delegado entregará la mayor parte del trabajo a la función iterativa
+previamente escrita y usará esta información para resolver el problema
+general.
+
+Para escribir un delegado, tenemos que seguir dos reglas:
+
+-  El delegado debe manejar completamente el caso más trivial, sin
+   llamar a la función iterativa.
+-  El delegado, al llamar a la función iterativa, debe pasar una versión
+   más pequeña del problema.
+
+.. code:: c++
+
+    int sumaDelegadaArray(int enteros[], int tam) {
+        if (tam == 0) return 0;
+        int ultimoNumero = enteros[tam - 1];
+        int sumaTodosMenosUno = sumaIterativaArray(enteros, tam - 1);
+        return ultimoNumero + sumaTodosMenosUno;
+    }
+
+Para convertir esta solución iterativa en una solución recursiva, sólo
+se requiere un paso adicional y simple: hacer que la función delegada se
+llame a sí misma donde antes llamaba a la función iterativa.
+
+Entonces podemos eliminar la función iterativa por completo.
+
+.. code:: c++
+
+    int sumaRecursivaArray(int enteros[], int tam) {
+        if (tam == 0) return 0;
+        int ultimoNumero = enteros[tam - 1];
+        int sumaTodosMenosUno = sumaRecursivaArray(enteros, tam - 1);
+        return ultimoNumero + sumaTodosMenosUno;
+    }
+
+Errores comunes
+~~~~~~~~~~~~~~~
+
+**Demasiados parámetros**
+
+Considera el problema de calcular recursivamente la suma de un arreglo
+de enteros.
+
+Al escribir una solución iterativa a este problema, el programador sabe
+que se necesitará una variable de ``total acumulado`` (en la solución
+iterativa provista, se llamó ``suma``) y el arreglo se sumará a partir
+del primer elemento.
+
+Teniendo en cuenta la solución recursiva, el programador naturalmente
+imagina una implementación que refleja más directamente la solución
+iterativa, con una variable total acumulada y la primera llamada
+recursiva manejando el primer elemento del arreglo.
+
+Este enfoque, sin embargo, requiere que la función recursiva pase el
+total acumulado y la ubicación donde debe comenzar a procesarse la
+siguiente llamada recursiva. Tal solución se vería así:
+
+::
+
+   int sumaRecursivaArrayExtraParametros(int enteros[], int tam, int suma, int actualIndice) {
+       if (actualIndice == tam) return suma;
+       suma += enteros[actualIndice];
+       return sumaRecursivaArrayExtraParametros(enteros, tam, suma, actualIndice + 1);
+   }
+
+Desde el punto de vista del código del cliente, los parámetros
+adicionales no tienen sentido y siempre tendrán que ser ceros en la
+llamada, como se muestra en este ejemplo:
+
+.. code:: c++
+
+    //int a[10] = {20, 3, 5, 22, 7, 9, 14, 17, 4, 9};
+    //int total = sumarecursivaArrayExtraParametros(a, 10, 0, 0);
+
+**Variables globales**
+
+Las variables globales siempre deben evitarse en funciones recursivas
+cuando sea posible.Supongamos que se nos pide que escribamos una función
+recursiva que cuente el número de ceros que aparecen en un arreglo de
+enteros.
+
+Este es un problema simple de resolver usando iteración:
+
+.. code:: c++
+
+    int conteoIterativoCeros(int numeros[], int tam) {
+        int suma = 0;
+        int conteo = 0;
+        for (int i = 0; i < tam; i++) {
+            if (numeros[i] == 0) conteo ++;
+        }
+        return conteo;
+    }
+
+No podemos simplemente declarar ``conteo`` como una variable local en la
+versión recursiva porque entonces sería una nueva variable en cada
+llamada recursiva.
+
+Así que podríamos tener la tentación de declararlo como una variable
+global:
+
+::
+
+   int conteo;
+   int conteoRecursivoCeros(int numeros[], int tam){
+       if (tam == 0) return conteo;
+       if (numeros[tam - 1] == 0) conteo++;
+       conteoRecursivoCeros(numeros, tam - 1);
+   }
+
+Algunos programadores pueden intentar mitigar el problema haciendo que
+la variable sea local, pero estática:
+
+::
+
+   int conteoEstaticoCeros(int numeros[], int tam) {
+       static int conteo = 0;
+       if (tam == 0) return conteo;
+       if (numeros[tam - 1] == 0) conteo++;
+       conteoEstaticoCeros(numeros, tam - 1);
+   }
+
+La solución para evitar la variable global es suponer que una llamada
+recursiva con un valor más pequeño para el tamaño devolverá el resultado
+correcto y calculará el valor correcto para el arreglo general a partir
+de eso.
+
+Esto conducirá a una solución recursiva :
+
+.. code:: c++
+
+    int conteoRecursivoCeros(int numeros[], int tam) {
+    if (tam == 0) return 0;
+        int conteo = conteoRecursivoCeros(numeros, tam - 1);
+        if (numeros[tam - 1] == 0) conteo++;
+        return conteo;
+    }
+
+Ejercicios
+----------
+
+Como siempre, ¡es imperativo probar las ideas presentadas en este
+cuaderno!.
+
+1. Escribe una función para calcular la suma de solo los números
+   positivos en un arreglo de enteros. Primero, resuelve el problema
+   usando iteración. Luego, utilizando alguna técnica de esta clase,
+   convierte tu función iterativa en una función recursiva.
+
+2. Considera un arreglo que representa una cadena binaria, donde el
+   valor de datos de cada elemento es 0 o 1. Escribe una función
+   booleana para determinar si la cadena binaria tiene paridad impar (un
+   número impar de 1 bits). Sugerencia: recuerda que la función
+   recursiva devolverá true (odd) o false (even), no el recuento de 1
+   bits. Resuelve el problema primero usando iteración, luego
+   recursividad.
+
+3. Escribe una función a la que se le pase un arreglo de enteros y un
+   número “objetivo” y que devuelva el número de ocurrencias del
+   objetivo en el arreglo. Resuelve el problema primero usando
+   iteración, luego recursividad.
+
+4. Encuentra un problema sobre procesar un arreglo unidimensional que ya
+   hayas resuelto o que sea trivial para ti en tu nivel de habilidad
+   actual y resuelve el problema (o resuelvas de nuevo) usando
+   recursividad.
+
+.. code:: c++
+
+    // Tus respuestas
+
+Los enfoques top-down y bottom-up
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Los algoritmos están diseñados utilizando dos enfoques: el de
+``top-down`` y el de ``bottom-up`` . En el enfoque de ``top-down`` un
+módulo complejo se divide en submódulos. Por otro lado, el enfoque
+``bottom-up`` comienza con módulos elementales que luego se van
+combinando más. El propósito apriori de un algoritmo es operar los datos
+comprendidos en la estructura de datos. En otras palabras, se utiliza un
+algoritmo para realizar operaciones con los datos dentro de las
+estructuras de datos.
+
+Un algoritmo complicado se divide en pequeñas partes llamadas módulos y
+el proceso de división se conoce como modularización. La modularización
+reduce significativamente las complicaciones de diseñar un algoritmo y
+hace que su proceso sea más fácil de diseñar e implementar.
+
+El enfoque de ``top-down`` enfatiza el aislamiento de los submódulos
+(significa el bajo acoplamiento entre los módulos) mientras ignora la
+identificación del concepto de comunicación y reutilización. Mientras
+que en el enfoque ``bottom-up``, el ocultamiento de la información y la
+reutilización son los factores destacados.
+
+Si cualquier problema se puede dividir en subproblemas, que a su vez se
+dividen en subproblemas más pequeños y si hay superposiciones entre
+estos subproblemas, entonces las soluciones a estos subproblemas se
+pueden guardar para una referencia futura. De esta manera, se puede
+mejorar la eficiencia de la CPU.
+
+Este método de resolver una solución se conoce como **programación
+dinámica**.
+
+Estos problemas implican calcular repetidamente el valor de los mismos
+subproblemas para encontrar la solución óptima, es decir ayuda a
+resolver eficientemente una clase de problemas que tienen **subproblemas
+superpuestos** y propiedades de **subestructura óptimas**
+
+La programación dinámica es principalmente una optimización sobre la
+recursividad. Siempre que veamos una solución recursiva que tenga
+llamadas repetidas para las mismas entradas, podemos optimizarla usando
+la programación dinámica.
+
+La idea es simplemente almacenar los resultados de los subproblemas, de
+modo que no tengamos que volver a calcularlos cuando sea necesario más
+adelante. Esta simple optimización reduce las complejidades temporales
+de exponencial a polinómica.
+
+Por ejemplo, si escribimos una solución recursiva simple para los
+números de Fibonacci, obtenemos una complejidad temporal exponencial y
+si la optimizamos almacenando soluciones de subproblemas, la complejidad
+temporal se reduce a lineal.
+
+Todo puede implementarse mediante ``memorización (top-down)`` o
+``tabulación (bottom-up)``. Si estas interesado más sobre este tema
+puedes leer:
+https://jarednielsen.com/dynamic-programming-memoization-tabulation/.
+
+Memorización
+~~~~~~~~~~~~
+
+La memorización es una forma de mejorar la recursividad. Es una técnica
+que consiste en almacenar en memoria valores que ya hemos calculado para
+evitar calcularlos de nuevo, mejorando así el tiempo de ejecución del
+algoritmo. Hagamos un ejemplo para ver la importancia de usar la
+memorización.
+
+Considera la función de recurrencia siguiente, que calcula el n-ésimo
+número de Fibonacci. Los primeros dos números de Fibonacci son 1, y el
+n-ésimo número de Fibonacci es la suma de los dos números de Fibonacci
+anteriores, para :math:`n \geq 2`.
+
+.. code:: c++
+
+    int f(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        
+        return f(n - 1) + f(n - 2);
+    }
+
+
+Ahora, supongamos que queremos obtener el quinto número de Fibonacci.
+
+**Pregunta**:Realiza un dibujo explicando, cual es el procedimiento de
+recursividad?
+
+.. code:: c++
+
+    // Tu respuesta
+
+Pero si usamos un arreglo para almacenar los valores de todos los
+números de Fibonacci ya calculados y usamos esos valores entonces
+evitaremos ejecutar las mismas operaciones nuevamente y eso mejorará el
+tiempo de ejecución de nuestro código.
+
+Considera el arreglo ``Fibo`` contiene que inicialmente contiene solo 0
+y se usará para almacenar los números de Fibonacci. La función de
+recursión que usa memorización se vería de la siguiente manera:
+
+.. code:: c++
+
+    int f(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+    }
+    if (Fibo[n] == 0) {
+        Fibo[n] = f(n - 1) + f(n - 2);
+    }
+        return Fibo[n];
+    
+    }
+
+En el código mostrado anteriormente notamos que solo llamamos a la
+función recursiva si el valor de ``Fibo[n]`` es cero, lo que significa
+que aún no hemos calculado el n-ésimo número de Fibonacci. De lo
+contrario, devolvemos el valor ya calculado almacenado en ``Fibo[n]``.
+
+La **memorización** es un proceso de optimización. En términos simples,
+almacenamos los resultados intermedios de las soluciones de
+subproblemas, lo que nos permite acelerar el cálculo de la solución
+general.
+
+La mejora se puede reducir de una solución de tiempo exponencial a una
+solución de tiempo polinómico, con la sobrecarga de utilizar memoria
+adicional para almacenar resultados intermedios.
+
+Tabulación
+~~~~~~~~~~
+
+La tabulación es un enfoque en el que se resuelve un problema de
+programación dinámica llenando primero una tabla y luego calculando la
+solución al problema original basándose en los resultados de esta tabla.
+
+Si bien los problemas de programación dinámica, como el cálculo de
+Fibonacci, son de naturaleza recursiva, una implementación de tabulación
+es siempre iterativa. En este caso, este sería el enfoque más natural:
+hacer un bucle del 1 al 50 calculando todos los números de Fibonacci a
+medida que avanza.
+
+::
+
+   fib[0] = 0 
+   fib[1] = 1 
+   for i in range (48): 
+     fib[i+2] = fib[i] + fib[i+1] 
+
+En cualquier escenario interesante, la solución ``bottom-up`` suele ser
+más difícil de entender. Sin embargo, una vez que lo entiendas,
+normalmente obtendrás una idea mucho más clara de cómo funciona el
+algoritmo.
+
+Si tenemos un función ``fib`` para los números de Fibonacci memorizada:
+
+.. code:: c++
+
+    list mem = []; 
+    int resultado = 0; 
+    fib_mem(n){ 
+      if(mem[n]!=Null) if(n < 2) 
+        resultado = n; 
+       else 
+        resultado = fib_mem(n –2) + fib_mem(n –1)  ; 
+    
+      mem[n]=resultado; 
+    
+    return mem[n]; 
+
+Como puede ver, ``fib_mem(k)`` solo se calculará como máximo una vez
+para cada ``k``. (La segunda vez devolverá el valor memorizado).
+
+Para ``fib_mem(4)``, las llamadas se realizarían en el siguiente orden:
+
+::
+
+   fib_mem(4)
+       fib_mem(3)
+           fib_mem(2)
+               fib_mem(1)
+               fib_mem(0)
+           fib_mem(1)    // ya calculado
+       fib_mem(2)   // ya calculado
+
+Este enfoque es de ``top-down`` como se ha mencionado ya que el problema
+original, ``fib_mem(4)`` está en la parte superior del cálculo anterior.
+
+Ahora veamos el método de tabulación en este ejemplo a través de los
+siguientes pasos:
+
+-  Se crea una función de número entero para tomar la entrada ``N`` y
+   crear el arreglo para el caché.
+-  El arreglo de caché se inicializa para los elementos ``0`` y ``1``.
+-  Otros elementos de la serie de Fibonacci se almacenan en la caché
+   mediante un bucle for.
+-  Finalmente, después de devolver el ``caché [n]``, se escribe la
+   función ``main`` para imprimir la salida.
+
+La versión tabulada de ``fib`` se ve así:
+
+.. code:: c++
+
+    fib_tab(n){  
+       list mem = []; 
+       mem[0] = 0; 
+       mem[1]=1; 
+       for(int i =0; i<n; i++){ 
+           mem[i] = mem[i –2] + mem[i- 1]; 
+    
+     }  
+    
+       return mem[n] 
+
+El cálculo de ``fib_tab(4)`` se puede describir de la siguiente manera:
+
+.. code:: c++
+
+    mem[0]=0
+    mem[1] = 1
+    mem[2] = mem[0]+ mem[1]
+    mem[3] = mem[1] + mem[2]
+    mem[4] = mem[2] + mem[3]
+
+A diferencia de la técnica de memorización, este cálculo es
+``bottom-up`` ya que el problema original, ``fib_tab(4)``, está al final
+del cálculo.
+
+Comentarios
+~~~~~~~~~~~
+
+1. El enfoque de top-down descompone la tarea grande en subtareas más
+   pequeñas, mientras que el enfoque de bottom-up primero elige resolver
+   las diferentes partes fundamentales de la tarea directamente y luego
+   combina esas partes en un programa completo.
+
+2. Cada submódulo se procesa por separado en un enfoque top-down. Por el
+   contrario, el enfoque bottom-up implementa el concepto de ocultación
+   de información examinando los datos que se van a encapsular.
+
+3. Los diferentes módulos con un enfoque de top-down no requieren mucha
+   comunicación. Por el contrario, el enfoque bottom-up necesita la
+   interacción entre los módulos fundamentales separados para
+   combinarlos más adelante.
+
+4. El enfoque de top-down puede producir redundancia, mientras que el
+   enfoque de bottom-up no incluye información redundante.
+
+5. El enfoque bottom-up se utiliza previamente en las pruebas. Por el
+   contrario, el enfoque de top-down se utiliza en la documentación de
+   módulos, la creación de casos de prueba, la depuración, etc.
+
+En cualquier escenario interesante, la solución ``bottom-up`` suele ser
+más difícil de entender. Sin embargo, una vez que lo entiendas,
+normalmente obtendrás una idea mucho más clara de cómo funciona el
+algoritmo. En la práctica, al resolver problemas no triviales, se
+recomienda primero escribir el enfoque de ``top-down`` y probarlo en
+pequeños ejemplos.
+
+Ejercicios
+~~~~~~~~~~
+
+Robot y rutas
+^^^^^^^^^^^^^
+
+La programación dinámica es una excelente manera de resolver problemas
+que giran en torno a rutas.
+
+Dada una cuadrícula de tamaño ``(M x N)``. Un robot ingresa a la
+cuadrícula desde las coordenadas ``(0, 0)``. Algunas celdas de la
+cuadrícula están bloqueadas. Descubre el número total de caminos que
+puede tomar el robot para llegar a la celda ``(M -1, N - 1)``.
+
+Nota: el movimiento del robot está limitado a un paso hacia el Sur o un
+paso hacia el Este.
+
+**Entrada**
+
+La primera línea de la entrada serán las dimensiones de la cuadrícula,
+es decir, ``R``, ``C`` y el número de celdas bloqueadas en la
+cuadrícula. Las siguientes líneas ``P`` contendrán las coordenadas de
+los bloques.
+
+Por ejemplo:
+
+::
+
+   Entrada:
+   4 3 2
+   3 3
+   3 1
+    
+   Solucion:
+   2
+
+En la programación dinámica, nunca desperdiciamos los cálculos
+anteriores. Esto distingue la programación dinámica de la recursividad.
+Usamos programación dinámica porque hace que la solución sea muchas
+veces más óptima que las soluciones recursivas.
+
+A continuación se muestra el proceso paso a paso que seguiremos para
+codificar la solución.
+
+::
+
+        * Para llegar a la celda (i, j), sólo podemos pasar por dos caminos.
+            - A través de (i - 1, j)
+                - Descendiendo un nivel desde la fila superior.
+            - O a través de (i, j - 1)
+                - Avanzando un paso hacia el este.
+        * Crea una matriz 2D para almacenar las respuestas a subproblemas más pequeños.
+        * El número total de formas para cada celda es el resultado de la relación recursiva.
+            - Relación recursiva: m[i][j] = m[i-1][j] + m[i][j - 1];
+        * Primero comprobaremos los casos base.
+            - si(i == 0 || j == 0)
+            - Representa la fila superior o la columna más a la izquierda.
+            - Solo hay una forma de llegar a los elementos de estas filas, dado que no hay ningún bloque.
+        * Si la celda superior está bloqueada: m[i][j] = m[i][j-1]
+        * Si la celda izquierda está bloqueada: m[i][j] = m[i -1][j]
+        * Haremos esto para todas las celdas. Y almacenamos las respuestas en una matriz.
+
+Implementa un programa en C++ de este problema.
+
+.. code:: c++
+
+    //Tu respuesta
+
+Distancia de Levenshtein
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+La distancia de Levenshtein es una forma de cuantificar qué tan
+diferentes son dos cadenas entre sí contando el número mínimo de
+operaciones necesarias para transformar una cadena en la otra. Para dos
+palabras es el número mínimo de ediciones de un solo carácter (es decir,
+inserciones, eliminaciones o sustituciones) necesarias para cambiar una
+palabra por otra. Cada una de estas operaciones tiene un coste unitario.
+
+Por ejemplo, la distancia de Levenshtein entre ``kitting`` y ``sitting``
+es 3. El script de edición mínimo que transforma el primero en el
+segundo es:
+
+::
+
+   kitten —> sitten (substitucion de s por k)
+   sitten —> sittin (substitucion de i por e)
+   sittin —> sitting (insercion de g al final) 
+
+Este problema a tiene una subestructura óptima. Eso significa que el
+problema puede dividirse en ``subproblemas`` más pequeños y simples, que
+a su vez pueden dividirse en subproblemas aún más simples y así
+sucesivamente, hasta que, finalmente, la solución se vuelve trivial.
+
+**Problema:** Transforma la cadena ``X[1...m]`` en ``Y[1...n]``
+realizando operaciones de edición en la cadena ``X``.
+
+**Subproblema:** Transforma la subcadena ``X[1...i]`` en ``Y[1...j]``
+realizando operaciones de edición en la subcadena ``X``.
+
+**Caso 1:** hemos llegado al final de cualquiera de las subcadenas.
+
+Si la subcadena ``X`` está vacía, inserta todos los caracteres restantes
+de la subcadena ``Y`` en ``X``. El costo de esta operación es igual al
+número de caracteres que quedan en la subcadena ``Y``.
+
+::
+
+   ('', 'ABC') ——> ('ABC', 'ABC') (costo = 3)
+
+Si la subcadena ``Y`` está vacía, inserta todos los caracteres restantes
+de la subcadena ``X`` en ``Y``. El costo de esta operación es igual al
+número de caracteres que quedan en la subcadena ``X``.
+
+::
+
+   ('ABC', '') ——> ('', '') (costo = 3)
+
+**Caso 2:** Los últimos caracteres de las subcadenas ``X`` e ``Y`` son
+iguales.
+
+Si los últimos caracteres de la subcadena ``X`` y la subcadena ``Y``
+coinciden, no es necesario hacer nada, simplemente recurre para la
+subcadena restante ``X[0...i-1], Y[0...j-1]``. Como no implica ninguna
+operación de edición, el coste será 0.
+
+::
+
+   ('ACC', 'ABC') ——> ('AC', 'AB') (costo = 0)
+
+**Caso 3:** Los últimos caracteres de las subcadenas ``X`` e ``Y`` son
+diferentes.
+
+Si los últimos caracteres de la subcadena ``X`` e ``Y`` son diferentes,
+devuelve el mínimo de las siguientes operaciones:
+
+-  Inserta el último carácter de ``Y`` en ``X``. El tamaño de ``Y`` se
+   reduce en ``1`` y ``X`` permanece igual. Esto representa
+   ``X[1...i]``, ``Y[1...j-1]`` a medida que avanzamos en la subcadena
+   objetivo, pero no en la subcadena de origen.
+
+   ::
+
+      ('ABA', 'ABC') ——> ('ABAC', 'ABC') == ('ABA', 'AB') (usando el caso 2)
+
+-  Elimina el último carácter de ``X``. El tamaño de ``X`` se reduce en
+   ``1`` y ``Y`` permanece igual. Esto representa
+   ``X[1...i-1], Y[1...j]`` a medida que avanzamos en la cadena de
+   origen, pero no en la cadena objetivo.
+
+   ::
+
+      ('ABA', 'ABC') ——> ('AB', 'ABC')
+
+-  Sustituye (reemplaza) el carácter actual de ``X`` por el carácter
+   actual de ``Y``. El tamaño de ``X`` e ``Y`` se reduce en 1. Esto
+   representa ``X[1...i-1], Y[1...j-1]`` a medida que nos movemos tanto
+   en la cadena de origen como en la de objetivo.
+
+   ::
+
+      ('ABA', 'ABC') —> ('ABC', 'ABC') == ('AB', 'AB') (usando el caso 2)
+
+   Es básicamente lo mismo que el caso 2, donde los dos últimos
+   caracteres coinciden y nos movemos tanto en la cadena de origen como
+   en la de objetivo, excepto que cuesta una operación de edición.
+
+1. Define el problema de Levenshtein manera recursiva y realiza una
+   implementación en C++ de tus respuesta.
+
+.. code:: c++
+
+    // Tu respuesta
+
+El problema tiene una subestructura óptima. La solución anterior también
+presenta subproblemas superpuestos. Si dibujamos el árbol de
+recursividad de la solución, podemos ver que los mismos subproblemas se
+calculan repetidamente (realiza eso).
+
+Sabemos que los problemas con una subestructura óptima y subproblemas
+superpuestos se pueden resolver mediante programación dinámica, en la
+que las soluciones de los subproblemas se memorizan en lugar de
+calcularse repetidamente.
+
+La versión memorizada sigue el enfoque de ``top-down``, ya que primero
+dividimos el problema en subproblemas y luego calculamos y almacenamos
+valores. También podemos resolver este problema usando ``bottom-up``. En
+el enfoque ``bottom-up``, primero resolvemos los subproblemas más
+pequeños y luego solucionamos los subproblemas más grandes a partir de
+ellos.
+
+La invariante mantenida en todo el algoritmo es que podemos transformar
+el segmento inicial ``X[1..i]`` en ``Y[1...j]`` usando un mínimo de
+operaciones ``T[i, j]``. Al final, el elemento de la matriz inferior
+derecha contiene la respuesta.
+
+Por ejemplo, sea ``X`` ``kitten`` e ``Y`` ``sitting``. La distancia de
+Levenshtein entre ``X`` e ``Y`` es 3.
+
+2. Escribe una tabla que muestran la distancia de Levenshtein de la
+   subcadena ``X[0..i-1]`` e ``Y[0...j-1]``.
+
+.. code:: c++
+
+    // Tu respuesta
+
+3. [Opcional] Implementa una versión iterativa del problema.
+
+.. code:: c++
+
+    // Tu respuesta
