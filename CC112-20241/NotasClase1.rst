@@ -1008,3 +1008,54 @@ Algunos de los jueces en línea más populares son:
    problemas y también hay una gran base de datos de problemas para
    resolver.
 
+Recursividad
+------------
+
+``Primero, resuelve el problema. Luego, escribe el código`` –>
+``John Johnson``
+
+
+Cuando se llama a una función dentro de la misma función, decimos que
+esta función es una función recursiva. Supongamos que hay una función
+:math:`f(n)`, que devuelve el factorial de un número dado n:
+
+::
+
+   f(0) = 1
+   f(1) = 1
+   f(2) = 1 x 2   
+   f(3) = 1 x 2 x 3 = f(2) x f(3)
+   ...
+   f(n) = 1 x 2 x 3...f(n) = f(n-1) x n  
+
+
+Vemos que el factorial de `n` se obtiene multiplicando n por el factorial
+de `n - 1` y el factorial de `n - 1` se obtiene por el factorial de `n -2`, y
+así hasta llegar a 0!. Entonces decimos que 0! es el **caso base**, ya
+que es el que genera el resto de los factoriales. Si vemos esto como una
+función recursiva, se vería como:
+
+.. code:: c++
+
+    int f(unsigned int n) {
+        if (n == 0) {
+            return 1;
+      }
+        return n * f(n - 1);
+    }
+
+La validación para verificar si `n` es cero es crítica, porque sin ella la
+recursividad nunca se detendría y la memoria de nuestra computadora
+eventualmente colapsaría. Cada vez que se llama recursivamente a una
+función, toda la memoria que usa se almacena en un **heap**, y esa
+memoria se libera hasta que finaliza la función. Por eso es
+indispensable agregar una condición de parada y evitar terminar en un
+proceso *infinito*.
+
+Resumiendo, hay dos partes fundamentales que toda función recursiva debe
+tener:
+
+1. La función debe llamarse a sí misma dentro de la función.
+
+2. Se debe dar una condición de parada o caso base para evitar un
+   proceso infinito.
