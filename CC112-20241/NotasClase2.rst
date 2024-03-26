@@ -21,7 +21,7 @@ Análisis de casos
    en una distribución de todas las posibles entradas. Es más
    representativo del rendimiento esperado en la práctica.
 
--  Mejoe caso: El mínimo tiempo y espacio requeridos. Aunque puede ser
+-  Mejor caso: El mínimo tiempo y espacio requeridos. Aunque puede ser
    informativo, raramente es útil para la planificación de recursos
    porque se basa en el mejor escenario posible.
 
@@ -309,9 +309,13 @@ aumenta en una cantidad constante. Los algoritmos con complejidad
 logarítmica son altamente eficientes, especialmente para grandes
 volúmenes de datos.
 
-**Características** - Algoritmos con esta complejidad son muy eficientes
+**Características** 
+
+- Algoritmos con esta complejidad son muy eficientes
 ya que, incluso para entradas muy grandes, el incremento en el número de
-operaciones requeridas es relativamente pequeño. - La base del logaritmo
+operaciones requeridas es relativamente pequeño. 
+
+- La base del logaritmo
 en la notación :math:`O(\log n)` generalmente no se especifica porque
 las complejidades se consideran hasta un factor constante. Sin embargo,
 en informática, el logaritmo suele ser en base 2 (debido a la naturaleza
@@ -407,10 +411,14 @@ factor logarítmico debido a la naturaleza de las operaciones internas.
 **Mergesort**
 
 Es un ejemplo clásico de un algoritmo con complejidad
-:math:`O(n \log n)`. Funciona de la siguiente manera: 1. **Dividir:**
-Divide el conjunto de datos en dos mitades. 2. **Conquistar:** Ordena
-recursivamente cada mitad. 3. **Combinar:** Mezcla las dos mitades
-ordenadas para formar una única secuencia ordenada.
+:math:`O(n \log n)`. Funciona de la siguiente manera: 
+
+1. **Dividir:**
+Divide el conjunto de datos en dos mitades. 
+
+2. **Conquistar:** Ordena recursivamente cada mitad. 
+
+3. **Combinar:** Mezcla las dos mitades ordenadas para formar una única secuencia ordenada.
 
 Cada división reduce el tamaño del problema a la mitad, lo que lleva a
 un componente logarítmico :math:`(\log n)` en la complejidad, mientras
