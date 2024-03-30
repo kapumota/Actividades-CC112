@@ -1,13 +1,41 @@
 Algoritmos de ordenamiento
 --------------------------
+Muchos algoritmos eficientes se basan en ordenar los datos de entrada, ya que el proceso de ordenamiento a menudo simplifica la resolución del problema. El problema básico en el ordenamiento es el siguiente: dado un arreglo que contiene ``n`` elementos, se requiere ordenar los elementos en orden creciente.
+En esta sección, repasaremos algunos algoritmos de ordenamiento fundamentales y examinaremos sus propiedades. Aunque es posible diseñar algoritmos de ordenamiento simples, también existen alternativas más eficientes.
 
-Muchos algoritmos eficientes se basan en ordenar los datos de entrada, porque el ordenamiento a menudo facilita la resolución del problema.
+Después de revisar la teoría del ordenamiento, nos enfocaremos en la aplicación práctica del ordenamiento en C++.
 
-El problema básico al ordenar es el siguiente: dado un arreglo que contiene ``n`` elementos, ordena los elementos en orden creciente.
+Revisamos los algoritmos de ordenamiento fundamentales:
 
-En esta sección repasaremos algunos algoritmos de ordenamiento fundamentales y examinaremos sus propiedades. Es fácil diseñar un algoritmo de ordenamiento temporal, pero también existen algoritmos más eficientes.
+1. **Ordenamiento burbuja (bubble sort):** Un algoritmo simple pero ineficiente que compara pares de elementos adyacentes y los intercambia si están en el orden incorrecto. Aunque su complejidad es alta, es útil para entender los conceptos básicos de ordenamiento.
 
-Después de discutir la teoría de la ordenamiento, nos centraremos en el uso de la ordenamiento en la práctica en C++.
+2. **Ordenamiento por inserción (insertion sort):** Este algoritmo construye una lista ordenada uno a la vez mediante la inserción de elementos no ordenados en la posición correcta. Aunque su eficiencia es moderada, es más rápido que el ordenamiento burbuja en la mayoría de los casos.
+
+3. **Ordenamiento por selección (selection sort):** Este método selecciona repetidamente el elemento más pequeño (o más grande) de la porción no ordenada del arreglo y lo coloca al principio (o al final) de la lista ordenada. Aunque su complejidad es similar a la del ordenamiento por inserción, tiende a realizar menos intercambios.
+
+Estos son solo algunos ejemplos de algoritmos de ordenamiento. En la práctica, se pueden utilizar algoritmos más avanzados, como el ordenamiento rápido (Quick Sort) o el ordenamiento por fusión (Merge Sort), que son mucho más eficientes para grandes conjuntos de datos.
+
+En la programación en C++, la biblioteca estándar proporciona una serie de funciones y algoritmos para ordenar contenedores, como ``std::sort``, que implementa un algoritmo de ordenamiento eficiente (generalmente una variante de Quick Sort). Esta función es ampliamente utilizada y eficiente para la mayoría de los casos de uso.
+
+.. code:: c++
+
+    #include <iostream>
+    #include <vector>
+    #include <algorithm>
+
+    int main() {
+        std::vector<int> datos = {4, 2, 6, 1, 3, 5};
+        std::sort(datos.begin(), datos.end());
+
+        std::cout << "Datos ordenados:";
+        for (int d : datos) {
+            std::cout << " " << d;
+        }
+        std::cout << std::endl;
+
+        return 0;
+    }
+
 
 Bubble sort
 ^^^^^^^^^^^
@@ -26,23 +54,8 @@ Siempre que se encuentran dos elementos consecutivos que están en orden incorre
         }
     }
 
-Después de la primera ronda del ordenamiento de burbujas, el elemento más grande estará en la posición correcta y, de manera más general, después de ``k`` rondas, los ``k`` elementos más grandes estarán en las posiciones correctas. Por lo tanto, después de ``n`` rondas, se ordenará en todo el arreglo. Por ejemplo, las siguientes figuras muestran las rondas de intercambios cuando se utiliza el ordenamiento de burbujas para ordenar un arreglo.
+Después de la primera ronda del ordenamiento de burbujas, el elemento más grande estará en la posición correcta y, de manera más general, después de ``k`` rondas, los ``k`` elementos más grandes estarán en las posiciones correctas. Por lo tanto, después de ``n`` rondas, se ordenará en todo el arreglo. 
 
-.. image:: Imagenes/Semana2/BubbleSort1.png
-  :width: 340px
-  :height: 70px
-
-Las iteraciones del método de ordenamiento de burbujas se muestran en la tabla:
-
-.. image:: Imagenes/Semana2/BubbleSort2.png
-  :width: 560px
-  :height: 200px
-
-El arreglo resultante es:
-
-.. image:: Imagenes/Semana2/BubbleSort3.png
-  :width: 280px
-  :height: 50px
 
 El ordenamiento por burbujas es un ejemplo de un algoritmo de ordenamiento que siempre intercambia elementos consecutivos en el arreglo. Resulta que la complejidad temporal de dicho algoritmo es siempre al menos :math:`O(n^2)` , porque en el peor de los casos, se requieren $O(n^2) $ intercambios para ordenar el arreglo.
 
@@ -143,15 +156,6 @@ Si queremos crear un algoritmo de ordenamiento eficiente, debemos poder reordena
 5. Fusiona el subarreglo ordenado ``arreglo[a...k]`` y el arreglo
    ``arreglo[k +1...b]`` en un subarreglo ordenado ``arreglo[a...b]``.
 
-Veamos el proceso del algoritmo.
-
-.. image:: Imagenes/Semana2/MergeSort.png
-  :width: 390px
-  :height: 220px
-
-Por ejemplo, la figura anterior muestra cómo el merge sort ordena un arreglo de ocho elementos. Primero, el algoritmo divide el arreglo en dos arreglo de cuatro elementos. Luego, ordena estos subarreglos recursivamente llamándose a sí mismo.
-
-Finalmente, fusiona los subarreglos ordenados en un arreglo ordenada de ocho elementos.
 
 Ejemplo
 ^^^^^^^
@@ -165,62 +169,6 @@ De lo contrario, si :math:`A_i \geq B_j` el elemento :math:`B_j` se inserta al f
 El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se
 insertan en ``C``.
 
-**Iteración 1**
-
-.. image:: Imagenes/Semana2/MergeSort1.png
-  :width: 210px
-  :height: 100px
-
-
-**Iteración 2**
-
-.. image:: Imagenes/Semana2/MergeSort2.png
-  :width: 210px
-  :height: 100px
-
-**Iteración 3**
-
-.. image:: Imagenes/Semana2/MergeSort3.png
-  :width: 180px
-  :height: 100px
-
-**Iteración 4**
-
-.. image:: Imagenes/Semana2/MergeSort4.png
-  :width: 230px
-  :height: 100px
-
-**Iteración 5**
-
-.. image:: Imagenes/Semana2/MergeSort5.png
-  :width: 210px
-  :height: 100px
-
-**Iteración 6**
-
-.. image:: Imagenes/Semana2/MergeSort6.png
-  :width: 210px
-  :height: 100px
-
-**Iteración 7**
-
-.. image:: Imagenes/Semana2/MergeSort7.png
-  :width: 210px
-  :height: 100px
-**Iteración 8**
-
-.. image:: Imagenes/Semana2/MergeSort8.png
-  :width: 260px
-  :height: 100px
-
-Una vez que uno de los iteradores llega al final del arreglo,
-simplemente agregamos a ``C`` los elementos restantes del arreglo. Ahora
-``C`` contiene todos los elementos de ``A`` y ``C`` en orden no
-decreciente.
-
-::
-
-   C = [0, 1, 2, 5, 6, 7, 9, 10, 12, 16]
 
 MergeSort es un algoritmo eficiente porque reduce a la mitad el tamaño del subarreglo en cada paso. Luego, es posible fusionar los subarreglos ordenados en tiempo lineal, porque ya están ordenados. Dado que hay niveles recursivos y el procesamiento de cada nivel requiere un tiempo total de :math:`O(n)`, el algoritmo funciona en el tiempo
 :math:`O\log(n)`.
@@ -321,28 +269,6 @@ Un enfoque es usar la subrutina ``merge`` repetidamente, combinar los dos primer
 
     // Tu respuesta
 
-Ordenar el límite inferior
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-¿Es posible ordenar un arreglo más rápido que :math:`O(n \log n)` en el tiempo?
-
-Resulta que esto no es posible cuando nos limitamos a algoritmos de ordenamiento que se basan en la comparación de elementos de un arreglo.
-
-.. image:: Imagenes/Semana2/ProgresoOrdenamiento.png
-  :width: 400px
-  :height: 200px
-
-El límite inferior de la complejidad temporal se puede demostrar considerando el ordenamiento como un proceso en el que cada comparación de dos elementos proporciona más información sobre el contenido del arreglo. La figura ilustra el árbol creado en este proceso.
-
-Aquí ``"x <y?"`` significa que se comparan algunos elementos ``x`` e ``y``. Si ``x < y`` el proceso continúa hacia la izquierda y en caso contrario hacia la derecha. Los resultados del proceso son las posibles formas de ordenar el arreglo, ¡un total de ``n!`` maneras. Por este motivo, la altura del árbol debe ser al menos:
-
-.. math:: \log_2(n!) = \log_2(1) + \log_2(2) + \cdots \log_2(n)
-
-Obtenemos un límite inferior para esta suma eligiendo los últimos :math:`n/2` elementos y cambiando el valor de cada elemento a :math:`\log_2(n/2)`. Esto produce una estimación:
-
-.. math:: \log_2(n!) \geq (n/2)\cdot \log_2(n/2)
-
-por lo que la altura del árbol y el número de pasos en el peor de los casos en un algoritmo de ordenamiento es :math:`\Omega(n\log n)`.
 
 Counting sort
 ^^^^^^^^^^^^^
@@ -350,12 +276,6 @@ Counting sort
 El límite inferior no se aplica a algoritmos que no comparan elementos de un arreglo pero utilizan alguna otra información. Un ejemplo de tal algoritmo es counting sort que ordena un arreglo en tiempo :math:`O(n)` suponiendo que cada elemento del arreglo es un número entero entre :math:`0 \dots c` y :math:`c = 0(n)`.
 
 El algoritmo crea un arreglo contable, cuyos índices son elementos del arreglo original. El algoritmo recorre en iteración el arreglo original y calcula cuántas veces aparece cada elemento en el arreglo.
-
-Como ejemplo, la figura muestra un arreglo y el arreglo contable correspondiente. Por ejemplo, el valor en la posición ``3`` es ``2``, porque el valor ``3`` aparece ``2`` veces en el arreglo original. 
-
-.. image:: Imagenes/Semana2/OrdenamientoConteo.png
-  :width: 500px
-  :height: 140px
 
 La construcción del arreglo contable lleva :math:`O(n)` veces. Después de esto, el arreglo ordenado se puede crear en tiempo :math:`O(n)`, porque el número de apariciones de cada elemento se puede recuperar del arreglo contable. Por lo tanto, la complejidad temporal total de counting sort es :math:`O(n)`.
 
@@ -386,12 +306,6 @@ búsqueda comprueba el elemento central del subarreglo activo. Si el elemento ce
 
 Esta es la forma tradicional de implementar la búsqueda binaria. En cada paso verificamos el elemento central del subarreglo activo y procedemos a la parte izquierda o derecha.
 
-.. image:: Imagenes/Semana2/BusquedaBinaria1.png
-  :width: 520px
-  :height: 200px
-
-Por ejemplo, la figura muestra cómo se encuentra un elemento con valor ``9`` en el arreglo.
-
 En cada paso verificamos el elemento central del subarreglo activo y procedemos a la parte izquierda o derecha.
 
 La búsqueda se puede implementar de la siguiente manera:
@@ -414,11 +328,6 @@ En esta implementación, el rango del subarreglo activo es y el rango inicial es
 
 En cada iteración, se salta hasta que terminemos fuera del arreglo o en un elemento cuyo valor exceda el valor objetivo. Tras los saltos o se ha encontrado el elemento deseado o sabemos que no aparece en el arreglo.
 
-La figura ilustra la técnica en un escenario de ejemplo.
-
-.. image:: Imagenes/Semana2/BusquedaBinaria2.png
-  :width: 520px
-  :height: 200px
 
 El siguiente código implementa la búsqueda:
 
