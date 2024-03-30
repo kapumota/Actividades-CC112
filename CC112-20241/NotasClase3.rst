@@ -40,9 +40,9 @@ En la programación en C++, la biblioteca estándar proporciona una serie de fun
 Bubble sort
 ^^^^^^^^^^^
 
-Bubble sort o `ordenamiento de burbujas <https://yongdanielliang.github.io/animation/web/BubbleSortNew.html>` es un algoritmo de ordenamiento simple que funciona en el tiempo. El algoritmo consta de :math:`n` rondas y en cada ronda se itera sobre los elementos de un arreglo.
+Bubble sort o `ordenamiento de burbujas` es un algoritmo de ordenamiento simple que funciona en tiempo :math:`O(n^2)`. El algoritmo consta de :math:`n` rondas y en cada ronda se itera sobre los elementos de un arreglo.
 
-Siempre que se encuentran dos elementos consecutivos que están en orden incorrecto, el algoritmo los intercambia. El algoritmo se puede implementar de la siguiente manera:
+Siempre que se encuentran dos elementos consecutivos que están en orden incorrecto, el algoritmo los intercambia.  La implementación típica del algoritmo en C++ es la siguiente:
 
 .. code:: c++
 
@@ -55,9 +55,6 @@ Siempre que se encuentran dos elementos consecutivos que están en orden incorre
     }
 
 Después de la primera ronda del ordenamiento de burbujas, el elemento más grande estará en la posición correcta y, de manera más general, después de ``k`` rondas, los ``k`` elementos más grandes estarán en las posiciones correctas. Por lo tanto, después de ``n`` rondas, se ordenará en todo el arreglo. 
-
-
-El ordenamiento por burbujas es un ejemplo de un algoritmo de ordenamiento que siempre intercambia elementos consecutivos en el arreglo. Resulta que la complejidad temporal de dicho algoritmo es siempre al menos :math:`O(n^2)` , porque en el peor de los casos, se requieren $O(n^2) $ intercambios para ordenar el arreglo.
 
 El programa siguiente lee un número :math:`n` (:math:`1 \leq n \leq100`), que indica el número de elementos en el
 arreglo :math:`X`. Los siguientes :math:`n` números representan los elementos de :math:`X`.
@@ -111,24 +108,21 @@ Ejercicios
 
     // Tus respuestas
 
-El mejor caso para la ordenación por burbujas ocurre cuando la lista ya está ordenada o casi ordenada. En el caso de que la lista ya esté ordenada, Bubble sort finalizará después de la primera iteración, ya que no se realizaron intercambios.
+El mejor caso para la ordenación por burbujas ocurre cuando la lista ya está ordenada o casi ordenada. En el caso de que la lista ya esté ordenada, el algoritmo finalizará después de la primera iteración, ya que no se realizaron intercambios.
 
 **Inversiones**
 
-Un concepto útil al analizar algoritmos de ordenamiento es una inversión: un par de índices del arreglo ``(a, b)`` tales que
-:math:`a < b` y ``arreglo[a] >arreglo[b]``, es decir, los elementos están en orden incorrecto.
+Un concepto útil al analizar algoritmos de ordenamiento es el de ``inversión``: un par de índices del arreglo ``(a, b)`` tales que :math:`a < b` y ``arreglo[a] >arreglo[b]``, es decir, los elementos están en orden incorrecto.
 
 Ejemplos:
 
 -  Entrada: ``A[] = [3, 2, 1]``
 
--  Los tres pares de inversiones son : ``(3, 2)``, ``(3, 1)``,
-   ``(2, 1)``
+-  Los tres pares de inversiones son : ``(3, 2)``, ``(3, 1)``, ``(2, 1)``
 
 -  Entrada: ``A[] = {6, 3, 5, 2, 7}``
 
--  Los cinco pares de inversiones son – (6, 3), (6, 5), (6, 2), (3, 2),
-   (5, 2)
+-  Los cinco pares de inversiones son – (6, 3), (6, 5), (6, 2), (3, 2), (5, 2)
 
 El número de inversiones indica cuánto trabajo se necesita para ordenar el arreglo. Un arreglo está completamente ordenado cuando no hay inversiones. Por otro lado, si los elementos del arreglo están en orden inverso, el número de inversiones es:
 
@@ -144,16 +138,15 @@ MergeSort
 Si queremos crear un algoritmo de ordenamiento eficiente, debemos poder reordenar los elementos que se encuentran en diferentes partes del arreglo. Existen varios algoritmos de ordenamiento de este tipo que funcionan en el tiempo :math:`O(n\log n)`. Uno de ellos es el de **merge sort**, que se basa en la recursividad. Merge sort ordena un subarreglo
 ``arreglo[a,b]`` de la siguiente manera:
 
-1. Si :math:`a =b`, no hagas nada, porque un subarreglo que solo contiene un elemento ya está ordenado.
+1. Si :math:`a =b`, no se realiza ninguna acción, ya que un subarreglo que solo contiene un elemento ya está ordenado.
 
-2. Calcula la posición del elemento medio:
-   :math:`k = \lfloor (a + b) /2 \rfloor` .
+2. Se calcula la posición del elemento medio::math:`k = \lfloor (a + b) /2 \rfloor` .
 
-3. Ordena recursivamente el subarreglo ``arreglo[a...k]``.
+3. Se ordena recursivamente el subarreglo ``arreglo[a...k]``.
 
-4. Ordena recursivamente el subarreglo ``arreglo[k +1...b]``.
+4. Se ordena recursivamente el subarreglo ``arreglo[k +1...b]``.
 
-5. Fusiona el subarreglo ordenado ``arreglo[a...k]`` y el arreglo
+5. Se fusiona el subarreglo ordenado ``arreglo[a...k]`` y el arreglo
    ``arreglo[k +1...b]`` en un subarreglo ordenado ``arreglo[a...b]``.
 
 
@@ -162,12 +155,7 @@ Ejemplo
 
 Se muestra el proceso del algoritmo de Merge Sort del arreglo ``A`` y el arreglo ``B`` en un arreglo ``C``, donde ``A`` y ``B`` se ordenan en orden no decreciente.
 
-Básicamente la idea del proceso consiste en colocar un iterador ``i`` (rojo) al inicio del arreglo ``A`` y un iterador ``j`` (azul) al inicio del arreglo ``B``. Si :math:`A_i < B_j` el elemento :math:`A_i` se inserta al final del arreglo ``C`` y ``i`` se mueve a la siguiente posición.
-
-De lo contrario, si :math:`A_i \geq B_j` el elemento :math:`B_j` se inserta al final de :math:`C` y :math:`j` se mueve a la siguiente posición.
-
-El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se
-insertan en ``C``.
+Básicamente la idea del proceso consiste en colocar un iterador ``i`` al inicio del arreglo ``A`` y un iterador ``j``  al inicio del arreglo ``B``. Si :math:`A_i < B_j` el elemento :math:`A_i` se inserta al final del arreglo ``C`` y ``i`` se mueve a la siguiente posición. De lo contrario, si :math:`A_i \geq B_j` el elemento :math:`B_j` se inserta al final de :math:`C` y :math:`j` se mueve a la siguiente posición. El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se insertan en ``C``.
 
 
 MergeSort es un algoritmo eficiente porque reduce a la mitad el tamaño del subarreglo en cada paso. Luego, es posible fusionar los subarreglos ordenados en tiempo lineal, porque ya están ordenados. Dado que hay niveles recursivos y el procesamiento de cada nivel requiere un tiempo total de :math:`O(n)`, el algoritmo funciona en el tiempo
@@ -261,9 +249,7 @@ El proceso explicado anteriormente tiene lugar en la función ``merge``, que rec
         }
     }
 
-**Ejercicio:** Supongamos que recibes :math:`k` arreglos ordenados, cada uno con :math:`n` elementos, y deseas combinarlos en un solo arreglo ordenado de :math:`kn` elementos.
-
-Un enfoque es usar la subrutina ``merge`` repetidamente, combinar los dos primeros arreglos, luego combinar el resultado con el tercer arreglo, luego con el cuarto arreglo y así sucesivamente hasta que se combine en el arreglo de entrada enésima y final. ¿Cuál es el tiempo de ejecución?
+**Ejercicio:** Supongamos que recibes :math:`k` arreglos ordenados, cada uno con :math:`n` elementos, y deseas combinarlos en un solo arreglo ordenado de :math:`kn` elementos. Un enfoque sería utilizar la subrutina ``merge`` repetidamente, combinar los dos primeros arreglos, luego combinar el resultado con el tercer arreglo, luego con el cuarto arreglo y así sucesivamente hasta que se combine en el arreglo de entrada enésima y final. ¿Cuál es el tiempo de ejecución de este proceso?
 
 .. code:: c++
 
