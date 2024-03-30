@@ -183,6 +183,8 @@ sort**, que se basa en la recursividad. Merge sort ordena un subarreglo
 
 Veamos el proceso del algoritmo.
 
+.. image:: Imagenes/Semana2/MergeSort.png
+
 Por ejemplo, la figura anterior muestra cómo el merge sort ordena un
 arreglo de ocho elementos. Primero, el algoritmo divide el arreglo en
 dos arreglo de cuatro elementos. Luego, ordena estos subarreglos
@@ -212,20 +214,23 @@ El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se
 insertan en ``C``.
 
 **Iteración 1**
+.. image:: Imagenes/Semana2/MergeSort1.png
 
 **Iteración 2**
+.. image:: Imagenes/Semana2/MergeSort2.png
 
 **Iteración 3**
-
+.. image:: Imagenes/Semana2/MergeSort3.png
 **Iteración 4**
-
+.. image:: Imagenes/Semana2/MergeSort4.png
 **Iteración 5**
-
+.. image:: Imagenes/Semana2/MergeSort5.png
 **Iteración 6**
-
+.. image:: Imagenes/Semana2/MergeSort6.png
 **Iteración 7**
-
+.. image:: Imagenes/Semana2/MergeSort7.png
 **Iteración 8**
+.. image:: Imagenes/Semana2/MergeSort8.png
 
 Una vez que uno de los iteradores llega al final del arreglo,
 simplemente agregamos a ``C`` los elementos restantes del arreglo. Ahora
