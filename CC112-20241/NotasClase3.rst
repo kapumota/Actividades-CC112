@@ -319,26 +319,116 @@ Python <https://www.mygreatlearning.com/blog/counting-sort/>`__.
 **Repaso:** Estudia las demostraciones dados aquí:
 https://homepages.bluffton.edu/~nesterd/apps/SortingDemo.html
 
+Radix Sort
+^^^^^^^^^^^^^
+Otro algoritmo de ordenamiento eficiente que no se basa en comparaciones es radix sort. Este algoritmo ordena los elementos basándose en sus dígitos, desde el dígito menos significativo hasta el más significativo o viceversa.
+
+La implementación más común de radix sort utiliza counting sort como subrutina para ordenar los elementos según cada dígito. Primero, se ordenan los elementos según el dígito menos significativo, luego según el siguiente dígito menos significativo, y así sucesivamente hasta que todos los dígitos han sido considerados.
+
+Radix sort tiene una complejidad temporal de :math:`O(kn)` , donde :math:`k` es el número de dígitos en el número más largo del arreglo.
+
+.. code:: c++
+    #include <iostream>
+    using namespace std;
+
+    // Función auxiliar para obtener el máximo valor en el arreglo
+    int getMax(int arr[], int n) {
+        int max = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+     // Función para realizar el counting sort según el dígito representado por exp.
+     void countingSort(int arr[], int n, int exp) {
+         int output[n];
+         int count[10] = {0};
+
+      // Almacenar la frecuencia de ocurrencia de cada dígito en count[]
+      for (int i = 0; i < n; i++) {
+        count[(arr[i] / exp) % 10]++;
+        }
+
+     // Cambiar count[i] para que contenga la posición real de este dígito en output[]
+     for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+      }
+
+     // Construir el arreglo de salida
+     for (int i = n - 1; i >= 0; i--) {
+         output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+         count[(arr[i] / exp) % 10]--;
+     }
+
+     // Copiar el arreglo de salida en arr[] para que arr[] contenga los números ordenados según el dígito actual
+     for (int i = 0; i < n; i++) {
+         arr[i] = output[i];
+       }
+    }
+
+     // Función principal que implementa Radix Sort
+     void radixSort(int arr[], int n) {
+     int max = getMax(arr, n);
+
+     // Realizar counting sort para cada dígito.
+     // exp es 10^i donde i es el dígito actual.
+     for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSort(arr, n, exp);
+       }
+    }
+
+    // Función para imprimir el arreglo
+    void printArray(int arr[], int n) {
+      for (int i = 0; i < n; i++) {
+          cout << arr[i] << " ";
+       }
+       cout << endl;
+    }
+
+    int main() {
+      int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
+      int n = sizeof(arr) / sizeof(arr[0]);
+
+      // Ordenar el arreglo
+      radixSort(arr, n);
+
+      // Imprimir el arreglo ordenado
+      printArray(arr, n);
+
+      return 0;
+    }
+
+El proceso de ordenamiento en Radix Sort se realiza en varias pasadas a través del arreglo, donde en cada pasada se ordenan los elementos según un dígito específico, comenzando desde el dígito menos significativo hasta el más significativo (o viceversa).
+
+1. Antes de comenzar el proceso de ordenamiento, el algoritmo determina cuántos dígitos tiene el número más grande en el arreglo. Este valor será importante para determinar el número de pasadas que se necesitarán para ordenar completamente el arreglo.
+
+2. El arreglo se recorre varias veces, una vez por cada dígito del número más grande. Durante cada pasada, los elementos del arreglo se agrupan según el valor del dígito correspondiente. Esto se logra utilizando un algoritmo de ordenamiento estable, como el Counting Sort, para ordenar los elementos según el valor del dígito actual.
+
+3. Es importante que el algoritmo de ordenamiento utilizado en cada pasada sea estable, lo que significa que preserva el orden relativo de los elementos que tienen el mismo valor en el dígito actual. Esto garantiza que el ordenamiento de los dígitos menos significativos no afecte el ordenamiento de los dígitos más significativos.
+
+4. Después de completar todas las pasadas a través del arreglo, los elementos se habrán ordenado completamente según todos los dígitos. El arreglo resultante está completamente ordenado y listo para su uso.
+
+El Radix sort es especialmente eficiente cuando los números en el arreglo tienen un número limitado de dígitos y la cantidad total de dígitos es relativamente pequeña en comparación con el tamaño del arreglo. Sin embargo, su complejidad temporal puede ser mayor en comparación con otros algoritmos de ordenamiento cuando los números tienen un número muy grande de dígitos.
+
+Algoritmos de búsqueda
+--------------------------
+
 Búsqueda binaria
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-La búsqueda binaria es un algoritmo de tiempo que se puede utilizar, por ejemplo, para comprobar de forma eficaz si un arreglo ordenado contiene un elemento determinado.
-
-En esta parte, primero nos centramos en la implementación de la búsqueda binaria y después, veremos cómo se puede utilizar la búsqueda binaria para encontrar soluciones óptimas a los problemas.
+La búsqueda binaria es un algoritmo eficiente que se utiliza para buscar un elemento en un arreglo ordenado. Funciona dividiendo repetidamente el espacio de búsqueda a la mitad.
 
 Implementación de la búsqueda
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Supongamos que tenemos un arreglo ordenado de ``n`` elementos y queremos verificar si el arreglo contiene un elemento con un valor objetivo ``x``.
 
-A continuación analizamos dos formas de implementar un algoritmo de búsqueda binaria para este problema.
+Existen dos formas comunes de implementar un algoritmo de búsqueda binaria:
 
-**Primer método** La forma más común de implementar la búsqueda binaria se asemeja a buscar una palabra en un diccionario. La búsqueda mantiene un subarreglo activo en el arreglo, que inicialmente contiene todos los elementos del arreglo. Luego, se realizan una serie de pasos, cada uno de los cuales reduce a la mitad el rango de búsqueda. En cada paso, la
-búsqueda comprueba el elemento central del subarreglo activo. Si el elemento central tiene el valor objetivo, la búsqueda finaliza. De lo contrario, la búsqueda continúa recursivamente hacia la mitad izquierda o derecha del subarreglo, dependiendo del valor del elemento central.
-
-Esta es la forma tradicional de implementar la búsqueda binaria. En cada paso verificamos el elemento central del subarreglo activo y procedemos a la parte izquierda o derecha.
-
-En cada paso verificamos el elemento central del subarreglo activo y procedemos a la parte izquierda o derecha.
+**Primer método** Esta implementación es similar a buscar una palabra en un diccionario. Inicialmente, mantenemos un subarreglo activo que contiene todos los elementos del arreglo. Luego, en cada paso, reducimos a la mitad el rango de búsqueda verificando el elemento central del subarreglo. Si el elemento central coincide con el valor objetivo, la búsqueda se detiene. De lo contrario, la búsqueda continúa recursivamente en la mitad izquierda o derecha del subarreglo, dependiendo del valor del elemento central.
 
 La búsqueda se puede implementar de la siguiente manera:
 
@@ -354,12 +444,9 @@ La búsqueda se puede implementar de la siguiente manera:
         else b = k-1;
     }
 
-En esta implementación, el rango del subarreglo activo es y el rango inicial es :math:`a...b` y el rango inicial es :math:`0...n -1`. El algoritmo reduce a la mitad el tamaño del subarreglo en cada paso, por lo que la complejidad temporal es :math:`O(\log n)`.
+En esta implementación tiene una complejidad temporal de :math:`O(\log n)`ya que el tamaño del subarreglo se reduce a la mitad en cada iteración.
 
-**Segundo Método** Otra forma de implementar la búsqueda binaria es recorrer el arreglo de izquierda a derecha dando *saltos*. La longitud del salto inicial es :math:`n/2` y la longitud del salto se va reduciendo a la mitad en cada paso: primero :math:`n/4`, luego :math:`n/8`, luego :math:`n/16`, etc., hasta que finalmente la longitud es 1.
-
-En cada iteración, se salta hasta que terminemos fuera del arreglo o en un elemento cuyo valor exceda el valor objetivo. Tras los saltos o se ha encontrado el elemento deseado o sabemos que no aparece en el arreglo.
-
+**Segundo Método** Otra forma de implementar la búsqueda binaria es recorrer el arreglo de izquierda a derecha dando *saltos*. La longitud del salto inicial es :math:`n/2` y se reduce a la mitad en cada iteración. En cada iteración, se salta hasta que se encuentra el elemento deseado o se sale del arreglo.
 
 El siguiente código implementa la búsqueda:
 
@@ -373,44 +460,50 @@ El siguiente código implementa la búsqueda:
     // x encontrado en el indice k
     }
 
-Durante la búsqueda, la variable ``b`` contiene la longitud del salto actual. La complejidad temporal del algoritmo es :math:`O(\log n)` , porque el código en el bucle while se ejecuta como máximo dos veces para cada longitud de salto.
+La complejidad temporal del algoritmo es :math:`O(\log n)` , porque el código en el bucle while se ejecuta como máximo dos veces para cada longitud de salto.
 
 Forma práctica
 ^^^^^^^^^^^^^^
 
-Las complejidades logarítmicas :math:`\log n` son importantes por un par de razones. En primer lugar, son una complejidad deseable a la hora de diseñar una función, ya que la eficiencia de las funciones :math:`O(\log n)` es cercana a la de las funciones :math:`O(1)`. En segundo lugar, se trata de una complejidad común en tiempo de ejecución, por lo que es importante poder reconocerlas.
+Los algoritmos con complejidades logarítmicas :math:`O(\log n)` son deseables en el diseño de funciones debido a su eficiencia cercana a :math:`O(1)`. La búsqueda binaria es un ejemplo de este tipo de algoritmo, que es comúnmente utilizado para buscar en arreglos ordenados.
 
-Los ejemplos incluyen búsquedas binarias, encontrar el valor más pequeño o más grande en un árbol de búsqueda binaria y ciertos algoritmos de divide y vencerás.
+La complejidad logarítmica es común en muchos algoritmos eficientes como búsquedas binarias, encontrar valores extremos en árboles binarios de búsqueda, y ciertos algoritmos de divide y vencerás. La búsqueda binaria, por ejemplo, reduce el espacio de búsqueda a la mitad en cada iteración, lo que resulta en una complejidad de :math:`O(\log n)`
 
-Veamos el ejemplo de la búsqueda binaria. Si queremos encontrar un valor en un arreglo ordenado, podríamos simplemente iterarlo hasta encontrar el valor, pero es posible que tengamos que recorrer toda el arreglo.
+La búsqueda binaria sigue una serie de pasos claramente definidos para encontrar un elemento en un arreglo ordenado:
 
-Una búsqueda binaria ofrece un método más eficiente.
+1. Establecimiento de variables: Se inician dos variables, min y max, donde min representa el índice más bajo del arreglo y max el índice más alto. Inicialmente, min se establece en 0 y max en 
 
-Estos son los pasos del pseudocódigo por los que pasa una búsqueda binaria que hemos explorado anteriormente:
+n−1, donde  n es el tamaño del arreglo.
 
-1. Establece dos variables: ``min = 0`` y ``max = n - 1``.
-2. Encuentra el valor medio entre el mínimo y el máximo promediando el
-   mínimo y el máximo y redondeándolo hacia abajo.
-3. Si ``arr[medio] === objetivo`` return ``medio``.
-4. Si ``arr[medio] <objetivo``, establece ``min = medio + 1``.
-5. De lo contrario, establece ``max = medio - 1``.
-6. Vuelve al paso 2.
+2. Cálculo del valor medio: Se calcula el índice medio del rango de búsqueda, promediando los valores de min y max y redondeándolo hacia abajo si es necesario.
 
-Eso suena bastante simple, pero veamos cómo se desarrolla con un arreglo real y un valor objetivo.
+3. Verificación del elemento medio: Se compara el valor del elemento en el índice medio (arr[medio]) con el valor objetivo. Si son iguales, se devuelve el índice medio, indicando que se ha encontrado el elemento deseado.
 
-Sea el ``arr = [4, 8, 10, 14, 27, 31, 46, 52]`` y nuestro objetivo es ``46``.
+4. Ajuste del rango de búsqueda: Si el valor del elemento medio es menor que el objetivo, se actualiza el valor de min para que apunte al elemento siguiente al medio. Esto reduce el rango de búsqueda a la mitad izquierda del arreglo.
 
-Entonces,
+5. Si el valor del elemento medio es mayor que el objetivo, se actualiza el valor de max para que apunte al elemento anterior al medio. Esto reduce el rango de búsqueda a la mitad derecha del arreglo.
 
--  ``min = 0, max = 7`` y ``medio = (0 + 7)/2 = 3.5`` -> redondear a  ``3``
--  ``arr[3] = 14`` y por lo tanto menos de ``46``, entonces  ``min = medio+ 1 = 4``
--  ``min = 4, max = 7`` y ``medio = (4 + 7)/2 = 5.5`` -> redondear a ``5``
--  ``arr[5] = 31`` y por lo tanto menos de ``84`` entonces ``min = medio + 1 = 6``
--  ``min = 6, max = 7`` y ``medio = (6 + 7)/2 = 6.5`` -> redondear a ``6``
--  ``arr[6] = 46``, ¡lo que equivale al objetivo! .
--  Regreso al medio.
+6. Repetición del proceso: Se repiten los pasos 2 a 5 hasta que se encuentre el elemento objetivo o el rango de búsqueda se haya reducido a cero.
 
-En el ejemplo pudimos encontrar el valor objetivo en solo ``3`` iteraciones del código. El algoritmo de búsqueda binaria logra esto dividiendo el área de búsqueda por la mitad en cada iteración. Entonces al principio tenemos ``n`` elementos para buscar. En el segundo paso solo tenemos ``n/2`` elementos para buscar y en el tercero solo tenemos ``n/4`` elementos para buscar.
+**Ejemplo de búsqueda binaria**
+
+Veamos un ejemplo concreto para comprender mejor cómo funciona la búsqueda binaria:
+
+Dado el arreglo ordenado ``arr = [4, 8, 10, 14, 27, 31, 46, 52]`` y el objetivo es encontrar el número ``46``:
+
+-Iteración 1:  ``min = 0, max = 7`` y ``medio = (0 + 7)/2 = 3.5`` -> redondear a  ``3``
+
+- El valor en el índice medio es ``arr[3] = 14`` y por lo tanto menos de ``46``, entonces  ``min = medio+ 1 = 4``
+
+- Iteración 2: ``min = 4, max = 7`` y ``medio = (4 + 7)/2 = 5.5`` -> redondear a ``5``
+
+- El valor en el índice medio es ``arr[5] = 31`` y por lo tanto menos de ``46`` entonces ``min = medio + 1 = 6``
+
+- Iteración 3:  ``min = 6, max = 7`` y ``medio = (6 + 7)/2 = 6.5`` -> redondear a ``6``
+
+- El valor en el índice medio es ``arr[6] = 46``, ¡lo que equivale al objetivo! .
+
+En el ejemplo pudimos encontrar el valor objetivo en solo ``3`` iteraciones del código. demostrando su eficiencia al dividir el área de búsqueda a la mitad en cada paso.
 
 En el caso anterior que se ve así,
 
@@ -426,7 +519,6 @@ Todo esto tomó tres pasos y se divide por 2 cada vez. Si multiplicamos por 2 ca
 
 Entonces podemos ver que dado que el código se dividía por ``2`` cada vez y comenzamos con ``n`` elementos en el arreglo ordenado, se necesitarán :math:`\log n` iteraciones del algoritmo de búsqueda binaria para encontrar el valor objetivo. Por lo tanto, la complejidad de una búsqueda binaria es :math:`O(\log n)`.
 
-Si un algoritmo divide los elementos que se consideran entre 2 en cada iteración, entonces probablemente tenga una complejidad de tiempo de ejecución de :math:`O(\log n)`.
 
 Encontrar soluciones óptimas
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
