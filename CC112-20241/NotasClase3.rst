@@ -405,13 +405,13 @@ El proceso de ordenamiento en radix sort se realiza en varias pasadas a través 
 
 1. Antes de comenzar el proceso de ordenamiento, el algoritmo determina cuántos dígitos tiene el número más grande en el arreglo. Este valor será importante para determinar el número de pasadas que se necesitarán para ordenar completamente el arreglo.
 
-2. El arreglo se recorre varias veces, una vez por cada dígito del número más grande. Durante cada pasada, los elementos del arreglo se agrupan según el valor del dígito correspondiente. Esto se logra utilizando un algoritmo de ordenamiento estable, como el Counting Sort, para ordenar los elementos según el valor del dígito actual.
+2. El arreglo se recorre varias veces, una vez por cada dígito del número más grande. Durante cada pasada, los elementos del arreglo se agrupan según el valor del dígito correspondiente. Esto se logra utilizando un algoritmo de ordenamiento estable, como el counting sort, para ordenar los elementos según el valor del dígito actual.
 
 3. Es importante que el algoritmo de ordenamiento utilizado en cada pasada sea estable, lo que significa que preserva el orden relativo de los elementos que tienen el mismo valor en el dígito actual. Esto garantiza que el ordenamiento de los dígitos menos significativos no afecte el ordenamiento de los dígitos más significativos.
 
 4. Después de completar todas las pasadas a través del arreglo, los elementos se habrán ordenado completamente según todos los dígitos. El arreglo resultante está completamente ordenado y listo para su uso.
 
-El Radix sort es especialmente eficiente cuando los números en el arreglo tienen un número limitado de dígitos y la cantidad total de dígitos es relativamente pequeña en comparación con el tamaño del arreglo. Sin embargo, su complejidad temporal puede ser mayor en comparación con otros algoritmos de ordenamiento cuando los números tienen un número muy grande de dígitos.
+Radix sort es especialmente eficiente cuando los números en el arreglo tienen un número limitado de dígitos y la cantidad total de dígitos es relativamente pequeña en comparación con el tamaño del arreglo. Sin embargo, su complejidad temporal puede ser mayor en comparación con otros algoritmos de ordenamiento cuando los números tienen un número muy grande de dígitos.
 
 Algoritmos de búsqueda
 --------------------------
