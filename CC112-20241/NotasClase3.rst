@@ -259,13 +259,59 @@ El proceso explicado anteriormente tiene lugar en la función ``merge``, que rec
 Counting sort
 ^^^^^^^^^^^^^
 
-El límite inferior no se aplica a algoritmos que no comparan elementos de un arreglo pero utilizan alguna otra información. Un ejemplo de tal algoritmo es counting sort que ordena un arreglo en tiempo :math:`O(n)` suponiendo que cada elemento del arreglo es un número entero entre :math:`0 \dots c` y :math:`c = 0(n)`.
+Este algoritmo ordena un arreglo en tiempo :math:`O(n)` suponiendo que cada elemento del arreglo es un número entero entre :math:`0 \dots c` y :math:`c = 0(n)`.
 
 El algoritmo crea un arreglo contable, cuyos índices son elementos del arreglo original. El algoritmo recorre en iteración el arreglo original y calcula cuántas veces aparece cada elemento en el arreglo.
 
 La construcción del arreglo contable lleva :math:`O(n)` veces. Después de esto, el arreglo ordenado se puede crear en tiempo :math:`O(n)`, porque el número de apariciones de cada elemento se puede recuperar del arreglo contable. Por lo tanto, la complejidad temporal total de counting sort es :math:`O(n)`.
 
 Counting sort es un algoritmo muy eficiente, pero solo se puede usar cuando la constante ``c`` es lo suficientemente pequeña, de modo que los elementos del arreglo se puedan usar como índices en el arreglo contable.
+
+.. code:: c++
+   #include <iostream>
+    using namespace std;
+
+    void countingSort(int arr[], int n, int max) {
+        int count[max + 1] = {0}; // Arreglo contable
+        int sortedArr[n];
+
+        // Contar la frecuencia de cada elemento
+        for (int i = 0; i < n; i++) {
+            count[arr[i]]++;
+        }
+
+        // Recrear el arreglo ordenado usando el arreglo contable
+        int index = 0;
+        for (int i = 0; i <= max; i++) {
+            while (count[i] > 0) {
+                sortedArr[index++] = i;
+                count[i]--;
+            }
+        }
+
+        // Copiar el arreglo ordenado de regreso al arreglo original
+        for (int i = 0; i < n; i++) {
+            arr[i] = sortedArr[i];
+        }
+    }
+
+    int main() {
+        int arr[] = {4, 2, 2, 8, 3, 3, 1};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        int max = 8; // Suponiendo que el rango máximo de elementos es conocido
+
+        countingSort(arr, n, max);
+
+        cout << "Arreglo ordenado: ";
+        for (int i = 0; i < n; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+
+        return 0;
+    }
+
+
 
 Revisa: `Counting Sort in C , C++, Java and
 Python <https://www.mygreatlearning.com/blog/counting-sort/>`__.
