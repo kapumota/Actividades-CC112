@@ -214,22 +214,35 @@ El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se
 insertan en ``C``.
 
 **Iteración 1**
+
 .. image:: Imagenes/Semana2/MergeSort1.png
 
 **Iteración 2**
+
 .. image:: Imagenes/Semana2/MergeSort2.png
 
 **Iteración 3**
+
 .. image:: Imagenes/Semana2/MergeSort3.png
+
 **Iteración 4**
+
 .. image:: Imagenes/Semana2/MergeSort4.png
+
 **Iteración 5**
+
 .. image:: Imagenes/Semana2/MergeSort5.png
+
 **Iteración 6**
+
 .. image:: Imagenes/Semana2/MergeSort6.png
+
 **Iteración 7**
+
 .. image:: Imagenes/Semana2/MergeSort7.png
+
 **Iteración 8**
+
 .. image:: Imagenes/Semana2/MergeSort8.png
 
 Una vez que uno de los iteradores llega al final del arreglo,
@@ -364,6 +377,8 @@ tiempo?
 Resulta que esto no es posible cuando nos limitamos a algoritmos de
 ordenamiento que se basan en la comparación de elementos de un arreglo.
 
+.. image:: Imagenes/Semana2/ProgresoOrdenamiento.png
+
 El límite inferior de la complejidad temporal se puede demostrar
 considerando el ordenamiento como un proceso en el que cada comparación
 de dos elementos proporciona más información sobre el contenido del
@@ -401,7 +416,9 @@ y calcula cuántas veces aparece cada elemento en el arreglo.
 
 Como ejemplo, la figura muestra un arreglo y el arreglo contable
 correspondiente. Por ejemplo, el valor en la posición ``3`` es ``2``,
-porque el valor ``3`` aparece ``2`` veces en el arreglo original.
+porque el valor ``3`` aparece ``2`` veces en el arreglo original. 
+
+.. image:: Imagenes/Semana2/OrdenamientoConteo.png
 
 La construcción del arreglo contable lleva :math:`O(n)` veces. Después
 de esto, el arreglo ordenado se puede crear en tiempo :math:`O(n)`,
@@ -455,6 +472,8 @@ Esta es la forma tradicional de implementar la búsqueda binaria. En cada
 paso verificamos el elemento central del subarreglo activo y procedemos
 a la parte izquierda o derecha.
 
+.. image:: Imagenes/Semana2/BusquedaBinaria1.png
+
 Por ejemplo, la figura muestra cómo se encuentra un elemento con valor
 ``9`` en el arreglo.
 
@@ -492,6 +511,8 @@ un elemento cuyo valor exceda el valor objetivo. Tras los saltos o se ha
 encontrado el elemento deseado o sabemos que no aparece en el arreglo.
 
 La figura ilustra la técnica en un escenario de ejemplo.
+
+.. image:: Imagenes/Semana2/BusquedaBinaria2.png
 
 El siguiente código implementa la búsqueda:
 
