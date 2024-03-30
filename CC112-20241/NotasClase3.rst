@@ -153,7 +153,7 @@ Si queremos crear un algoritmo de ordenamiento eficiente, debemos poder reordena
 Ejemplo
 ^^^^^^^
 
-Se muestra el proceso del algoritmo de Merge Sort del arreglo ``A`` y el arreglo ``B`` en un arreglo ``C``, donde ``A`` y ``B`` se ordenan en orden no decreciente.
+Se muestra el proceso del algoritmo de merge sort del arreglo ``A`` y el arreglo ``B`` en un arreglo ``C``, donde ``A`` y ``B`` se ordenan en orden no decreciente.
 
 Básicamente la idea del proceso consiste en colocar un iterador ``i`` al inicio del arreglo ``A`` y un iterador ``j``  al inicio del arreglo ``B``. Si :math:`A_i < B_j` el elemento :math:`A_i` se inserta al final del arreglo ``C`` y ``i`` se mueve a la siguiente posición. De lo contrario, si :math:`A_i \geq B_j` el elemento :math:`B_j` se inserta al final de :math:`C` y :math:`j` se mueve a la siguiente posición. El proceso continúa hasta que todos los elementos de ``A`` o ``B`` se insertan en ``C``.
 
@@ -401,7 +401,7 @@ Radix sort tiene una complejidad temporal de :math:`O(kn)` , donde :math:`k` es 
       return 0;
     }
 
-El proceso de ordenamiento en Radix Sort se realiza en varias pasadas a través del arreglo, donde en cada pasada se ordenan los elementos según un dígito específico, comenzando desde el dígito menos significativo hasta el más significativo (o viceversa).
+El proceso de ordenamiento en radix sort se realiza en varias pasadas a través del arreglo, donde en cada pasada se ordenan los elementos según un dígito específico, comenzando desde el dígito menos significativo hasta el más significativo (o viceversa).
 
 1. Antes de comenzar el proceso de ordenamiento, el algoritmo determina cuántos dígitos tiene el número más grande en el arreglo. Este valor será importante para determinar el número de pasadas que se necesitarán para ordenar completamente el arreglo.
 
@@ -471,15 +471,13 @@ La complejidad logarítmica es común en muchos algoritmos eficientes como búsq
 
 La búsqueda binaria sigue una serie de pasos claramente definidos para encontrar un elemento en un arreglo ordenado:
 
-1. Establecimiento de variables: Se inician dos variables, min y max, donde min representa el índice más bajo del arreglo y max el índice más alto. Inicialmente, min se establece en 0 y max en 
+1. Establecimiento de variables: Se inician dos variables, ``min`` y ``max``, donde min representa el índice más bajo del arreglo y ``max`` el índice más alto. Inicialmente, min se establece en 0 y ``max`` en  ``n-1``, donde  ``n`` es el tamaño del arreglo.
 
-n−1, donde  n es el tamaño del arreglo.
+2. Cálculo del valor medio: Se calcula el índice medio del rango de búsqueda, promediando los valores de ``min`` y ``max`` y redondeándolo hacia abajo si es necesario.
 
-2. Cálculo del valor medio: Se calcula el índice medio del rango de búsqueda, promediando los valores de min y max y redondeándolo hacia abajo si es necesario.
+3. Verificación del elemento medio: Se compara el valor del elemento en el índice medio ``(arr[medio])`` con el valor objetivo. Si son iguales, se devuelve el índice medio, indicando que se ha encontrado el elemento deseado.
 
-3. Verificación del elemento medio: Se compara el valor del elemento en el índice medio (arr[medio]) con el valor objetivo. Si son iguales, se devuelve el índice medio, indicando que se ha encontrado el elemento deseado.
-
-4. Ajuste del rango de búsqueda: Si el valor del elemento medio es menor que el objetivo, se actualiza el valor de min para que apunte al elemento siguiente al medio. Esto reduce el rango de búsqueda a la mitad izquierda del arreglo.
+4. Ajuste del rango de búsqueda: Si el valor del elemento medio es menor que el objetivo, se actualiza el valor de ``min`` para que apunte al elemento siguiente al medio. Esto reduce el rango de búsqueda a la mitad izquierda del arreglo.
 
 5. Si el valor del elemento medio es mayor que el objetivo, se actualiza el valor de max para que apunte al elemento anterior al medio. Esto reduce el rango de búsqueda a la mitad derecha del arreglo.
 
@@ -491,7 +489,7 @@ Veamos un ejemplo concreto para comprender mejor cómo funciona la búsqueda bin
 
 Dado el arreglo ordenado ``arr = [4, 8, 10, 14, 27, 31, 46, 52]`` y el objetivo es encontrar el número ``46``:
 
--Iteración 1:  ``min = 0, max = 7`` y ``medio = (0 + 7)/2 = 3.5`` -> redondear a  ``3``
+- Iteración 1:  ``min = 0, max = 7`` y ``medio = (0 + 7)/2 = 3.5`` -> redondear a  ``3``
 
 - El valor en el índice medio es ``arr[3] = 14`` y por lo tanto menos de ``46``, entonces  ``min = medio+ 1 = 4``
 
@@ -520,7 +518,7 @@ Todo esto tomó tres pasos y se divide por 2 cada vez. Si multiplicamos por 2 ca
 Entonces podemos ver que dado que el código se dividía por ``2`` cada vez y comenzamos con ``n`` elementos en el arreglo ordenado, se necesitarán :math:`\log n` iteraciones del algoritmo de búsqueda binaria para encontrar el valor objetivo. Por lo tanto, la complejidad de una búsqueda binaria es :math:`O(\log n)`.
 
 
-Encontrar soluciones óptimas
+Caso
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Supongamos que estamos resolviendo un problema y tenemos una función ``valid(x)`` que devuelve ``true`` si ``x`` es una solución válida y ``false`` en caso contrario. Además, sabemos que ``valid`` es ``false`` cuando :math:`x < k` y ``true`` cuando :math:`x\geq k`. En esta situación, podemos utilizar la búsqueda binaria para encontrar eficientemente el valor de ``k``.
