@@ -27,7 +27,7 @@ int main() {
 
 /*
 #include <iostream>
-// Comlejidad O(n^2)
+// Complejidad O(n^2)
 
 
 int main() {
