@@ -710,6 +710,14 @@ Ejercicios
 9. `Shil and Birthday
    present <https://www.hackerearth.com/practice/algorithms/sorting/counting-sort/practice-problems/algorithm/shil-and-birthday-present/>`__.
    Usa el algoritmo coutingsort.
+10. `Find
+    Mex <https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/find-mex-62916c25/>`__.
+    Usa el búsqueda lineal.
+
+11. `Base
+    numbers <https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/in-another-base-1-e0d0f1ca/>`__.
+    Usa una búsqueda binaria.
+
 
 .. code:: ipython3
 
