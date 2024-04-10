@@ -405,6 +405,38 @@ int main() {
 
 
 /*Pregunta 9*/
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+const int MAX_N = 1000001;
+int arr[MAX_N];
+
+int main() {
+    ios_base::sync_with_stdio(false); // Fast I/O
+    cin.tie(nullptr);
+
+    int N;
+    cin >> N;
+
+    for (int i = 0; i < N; ++i) {
+        cin >> arr[i];
+    }
+
+    sort(arr, arr + N); // Ordenamos el arreglo
+
+    long long beautifulCount = 0;
+    for (int i = 0; i < N; ++i) {
+        // Para cada elemento, cuenta cuántos elementos más grandes hay
+        beautifulCount += N - i - 1;
+    }
+
+    cout << beautifulCount << "\n";
+
+    return 0;
+}
+
+
 
 /*Pregunta 10*/
 
