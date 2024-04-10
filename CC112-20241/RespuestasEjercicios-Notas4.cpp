@@ -327,6 +327,81 @@ int main() {
 /*Pregunta 7*/
 
 /*Pregunta 8*/
+#include <iostream>
+using namespace std;
+
+// Modificación de la función para intercambiar dos elementos usando referencias
+void swap(int &a, int &b) {
+    int t = a;
+    a = b;
+    b = t;
+}
+
+// Esta función toma el último elemento como pivote, lo coloca en su posición correcta
+// en el arreglo ordenado, y coloca todos menores a su izquierda y los mayores a su derecha
+int partition (int arr[], int low, int high) {
+    int pivot = arr[high];    // pivote
+    int i = (low - 1);  // Índice del elemento más pequeño
+
+    for (int j = low; j <= high - 1; j++) {
+        // Si el elemento actual es menor que el pivote
+        if (arr[j] < pivot) {
+            i++;    // incrementa el índice del elemento más pequeño
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+// La función principal que implementa QuickSort
+// arr[] --> Arreglo a ser ordenado,
+// low  --> Índice inicial,
+// high  --> Índice final
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        // pi es el índice de partición, arr[pi] está ahora en el lugar correcto
+        int pi = partition(arr, low, high);
+
+        // Ordenar separadamente los elementos antes y después de la partición
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Función para verificar si cada chico puede conseguir una chica
+bool canFindPartner(int boys[], int girls[], int M, int N) {
+    // Si hay menos chicas que chicos, no es posible encontrar una pareja para cada chico
+    if (N < M) return false;
+
+    // Ordenar las alturas de los chicos y las chicas
+    quickSort(boys, 0, M - 1);
+    quickSort(girls, 0, N - 1);
+
+    // Verificar para cada chico si hay una chica más baja que él
+    for (int i = 0; i < M; i++) {
+        if (boys[i] <= girls[i]) return false; // No encontró una chica más baja
+    }
+    return true;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int M, N;
+        cin >> M >> N;
+        int boys[M], girls[N];
+
+        for (int i = 0; i < M; i++) cin >> boys[i];
+        for (int i = 0; i < N; i++) cin >> girls[i];
+
+        if (canFindPartner(boys, girls, M, N)) cout << "YES\n";
+        else cout << "NO\n";
+    }
+    return 0;
+}
+
 
 
 /*Pregunta 9*/
