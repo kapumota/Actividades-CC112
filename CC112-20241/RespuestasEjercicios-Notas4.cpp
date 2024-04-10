@@ -36,6 +36,70 @@ int main() {
 }
 
 /* Pregunta 2*/
+#include <iostream>
+
+// Función para ordenar un array en orden descendente usando el ordenamiento por selección
+void sortDesc(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int max_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] > arr[max_idx]) {
+                max_idx = j;
+            }
+        }
+        // Intercambiar el elemento máximo encontrado con el primer elemento
+        int temp = arr[max_idx];
+        arr[max_idx] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+int calculateKeystrokes(int frequencies[], int N, int keySizes[], int K) {
+    sortDesc(frequencies, N);
+    sortDesc(keySizes, K);
+
+    int totalKeystrokes = 0;
+    int keyPosition = 1;  // Pulsaciones necesarias para la letra actual en la tecla
+    int freqIndex = 0;  // Índice para las frecuencias ordenadas
+
+    for (int i = 0; i < K && freqIndex < N; ++i) {
+        for (int j = 0; j < keySizes[i] && freqIndex < N; ++j, ++freqIndex) {
+            totalKeystrokes += keyPosition * frequencies[freqIndex];
+        }
+        keyPosition++;
+    }
+
+    // Verificamos si todas las letras fueron asignadas a una tecla
+    if (freqIndex < N) {
+        return -1;  // No hay suficiente espacio en las teclas para todas las letras
+    }
+
+    return totalKeystrokes;
+}
+
+int main() {
+    int N;
+    std::cin >> N;
+    int frequencies[50];  // Asumiendo un máximo de 50 letras
+
+    for (int i = 0; i < N; ++i) {
+        std::cin >> frequencies[i];
+    }
+
+    int K;
+    std::cin >> K;
+    int keySizes[50];  // Asumiendo un máximo de 50 teclas
+
+    for (int i = 0; i < K; ++i) {
+        std::cin >> keySizes[i];
+    }
+
+    int result = calculateKeystrokes(frequencies, N, keySizes, K);
+    std::cout << result << std::endl;
+
+    return 0;
+}
+
 
 /* Pregunta 3*/
 
