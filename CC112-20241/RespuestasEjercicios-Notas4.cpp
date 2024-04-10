@@ -481,7 +481,96 @@ int main() {
 
     return 0;
 }
+/* Pregunta 11 */
 
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Función para determinar si ax^x tiene exactamente n dígitos en base b.
+bool check(int a, long long x, int n, int b) {
+    // Utilizamos logaritmos para calcular el número de dígitos.
+    double numDigits = log10(a) + x*log10(x) / log10(b);
+    return floor(numDigits) + 1 == n;
+}
+
+int main() {
+    int a, n, b;
+
+    while (cin >> a >> n >> b) {
+        int count = 0;
+        for (long long x = 1; x <= 1e9; x++) {
+            if (check(a, x, n, b)) {
+                // Incrementamos el contador si x satisface la condición.
+                count++;
+            } else if (count > 0) {
+                // Si ya encontramos un x que satisface la condición y el siguiente no,
+                // significa que hemos pasado el rango de x válidos.
+                break;
+            }
+        }
+        cout << count << endl;
+    }
+
+    return 0;
+}
+
+/*por corregir esta solución*/
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Función para determinar si ax^x tiene n o más dígitos en base b.
+bool hasNDigitsOrMore(int a, long long x, int n, int b) {
+    double numDigits = log10(a) + x * log10(x) / log10(b);
+    return floor(numDigits) + 1 >= n;
+}
+
+// Búsqueda binaria para encontrar el límite inferior del rango de x.
+long long findLowerBound(int a, int n, int b) {
+    long long left = 1, right = 1e9, ans = right;
+    while (left <= right) {
+        long long mid = left + (right - left) / 2;
+        if (hasNDigitsOrMore(a, mid, n, b)) {
+            ans = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return ans;
+}
+
+// Búsqueda binaria para encontrar el límite superior del rango de x.
+long long findUpperBound(int a, int n, int b) {
+    long long left = 1, right = 1e9, ans = 0;
+    while (left <= right) {
+        long long mid = left + (right - left) / 2;
+        if (!hasNDigitsOrMore(a, mid, n + 1, b)) {
+            ans = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int a, n, b;
+
+    while (cin >> a >> n >> b) {
+        long long lowerBound = findLowerBound(a, n, b);
+        long long upperBound = findUpperBound(a, n, b);
+
+        // Calculamos la cantidad de x que satisfacen la condición.
+        int count = (upperBound >= lowerBound) ? upperBound - lowerBound + 1 : 0;
+        cout << count << endl;
+    }
+
+    return 0;
+}
 
 
 
