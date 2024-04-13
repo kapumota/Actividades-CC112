@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.1...3.14)
+
+project(Punteros LANGUAGES CXX)
+
+add_executable(puntero1 puntero1.cpp)
+add_executable(puntero2 puntero2.cpp)
+add_executable(puntero3 puntero3.cpp)
+add_executable(puntero4 puntero4.cpp)
+add_executable(puntero5 puntero5.cpp)
+add_executable(puntero6 puntero6.cpp)
+add_executable(puntero7 puntero7.cpp)
+add_executable(puntero9 puntero9.cpp)
+add_executable(puntero10 puntero10.cpp)
+add_executable(puntero11 puntero11.cpp)
+add_executable(puntero12 puntero12.cpp)
+add_executable(puntero13 puntero13.cpp)
+add_executable(puntero14 puntero14.cpp)
+add_executable(puntero15 puntero15.cpp)
+add_executable(puntero16 puntero16.cpp)
+add_executable(puntero17 puntero17.cpp)
+add_executable(puntero18 puntero18.cpp)
+
