@@ -6,6 +6,7 @@ matemáticas que se enfoca en evaluar la eficiencia de los algoritmos.
 Este análisis busca determinar los recursos que el algoritmo necesita
 para completar su tarea, siendo los más comunes el tiempo de ejecución
 (cuánto tarda en terminar) y el espacio de memoria (cuánta memoria usa).
+
 A través de este análisis, los desarrolladores e investigadores pueden
 comparar algoritmos, prever su comportamiento en diferentes condiciones
 y elegir la mejor opción para una tarea específica.
