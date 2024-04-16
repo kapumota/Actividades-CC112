@@ -62,7 +62,7 @@ El siguiente diagrama muestra una región de la memoria como una cinta
 larga que se extiende de izquierda a derecha. Los números hexadecimales
 sobre la cinta son direcciones de memoria.
 
-.. image:: Imagenes/F8.png
+.. image:: Imagenes/Semana4/Memoria-direccion.png
 
 Los bytes de memoria no tienen un significado fijo hasta que el programa
 declara una variable.
@@ -123,7 +123,7 @@ variable ``int``, entonces ``&i1`` es un puntero a ``int`` que apunta a
 El efecto del operador ``address-of`` puede verse consultando el
 siguiente diagrama:
 
-.. image:: Imagenes/F9.png
+.. image:: Imagenes/Semana4/Memoria-direccion1.png
 
 Operador de desreferencia \*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
