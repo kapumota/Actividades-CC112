@@ -4,7 +4,7 @@ Administración de la memoria
 Stack
 ~~~~~
 
-Estas son algunas de las propiedades únicas del stack:
+Algunas de las propiedades únicas del stack son:
 
 -  El stack es un bloque de memoria contiguo.
 -  Tiene un tamaño máximo fijo. Si un programa excede el tamaño máximo
