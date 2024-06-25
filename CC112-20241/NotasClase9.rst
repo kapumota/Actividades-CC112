@@ -1,4 +1,4 @@
-Clases, constructores, destructores en C++
+Clases, constructores, destructores, puntero this en C++
 ------------------------------------------
 
 Una clase es un tipo de datos definido por el usuario que consta de
