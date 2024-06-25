@@ -854,7 +854,7 @@ En este ejemplo, usamos el puntero this dentro del constructor para
 distinguir entre los parámetros del constructor (nombre y edad) y los
 miembros de datos de la clase (this->nombre y this->edad).
 
-**Devolviendo ``*this`` para encadenamiento de métodos**
+**Devolviendo *this  para encadenamiento de métodos**
 
 El puntero this también se puede utilizar para devolver una referencia
 al objeto actual, permitiendo el encadenamiento de métodos
@@ -1249,7 +1249,7 @@ Explica los siguiente códigos.
 
 .. code:: ipython3
 
-    // Tu respyestas
+    // Tu respuestas
 
 .. code:: ipython3
 
